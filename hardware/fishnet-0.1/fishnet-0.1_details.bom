@@ -1,0 +1,25 @@
+Partlist exported from /home/perovich/eagle/riffleBoards/fishnet-0.1/fishnet-0.1.sch at 10/9/15 7:19 PM
+
+Assembly variant: 
+
+Part Value            Device              Package         Description                                                                        
+C1   0.1uF            CAP0603-CAP         0603-CAP        Capacitor                                                                          
+C5   10uF             CAP0603-CAP         0603-CAP        Capacitor                                                                          
+C6   10uF             CAP0603-CAP         0603-CAP        Capacitor                                                                          
+C10  0.1uF            CAP0603-CAP         0603-CAP        Capacitor                                                                          
+CN1                   JST_2PIN-SMT-RA     JST-PH-2-SMT-RA JST 2-Pin Connectors of various flavors                                            
+IC1  ATMEGA328P       MEGA8-AI            TQFP32-08       MICROCONTROLLER                                                                    
+IC4  MCP1700-33       MCP1700SOT89        SOT89           VOLTAGE REGULATOR                                                                  
+ISP                   PINHD-2X3           2X03            PIN HEADER                                                                         
+J1   AYZ0202          AYZ0202             AYZ0202         SPDT Slide Switch                                                                  
+JP2                   PINHD-1X6           1X06            PIN HEADER                                                                         
+LED  RGBLED5050       RGBLED5050          RGBLED5050      For 5050 RGB LEDs, the order of the LEDs may vary from one manufacturer to another!
+R3   10K              RESISTOR_0603_NOOUT 0603-NO         Resistors                                                                          
+R7   50K              RESISTOR_0603_NOOUT 0603-NO         Resistors                                                                          
+R8   50K              RESISTOR_0603_NOOUT 0603-NO         Resistors                                                                          
+R9   10K              RESISTOR_0603_NOOUT 0603-NO         Resistors                                                                          
+R10  10K              RESISTOR_0603_NOOUT 0603-NO         Resistors                                                                          
+RN1                   4R-NEXB38V          EXB38V          Array Chip Resistor                                                                
+SV1                   MA04-1              MA04-1          PIN HEADER                                                                         
+U$1  MICROSD-HRS_DM3D MICROSD-HRS_DM3D    DM3D                                                                                               
+X3   16 MHz           RESONATORSMD        RESONATOR-SMD   Resonator                                                                          

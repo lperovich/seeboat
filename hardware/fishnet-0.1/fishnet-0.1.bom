@@ -1,0 +1,20 @@
+Partlist exported from /home/perovich/eagle/riffleBoards/fishnet-0.1/fishnet-0.1.sch at 10/9/15 7:19 PM
+
+Assembly variant: 
+
+Qty Value            Device              Parts      
+1                    4R-NEXB38V          RN1        
+1                    JST_2PIN-SMT-RA     CN1        
+1                    MA04-1              SV1        
+1                    PINHD-1X6           JP2        
+1                    PINHD-2X3           ISP        
+2   0.1uF            CAP0603-CAP         C1, C10    
+3   10K              RESISTOR_0603_NOOUT R3, R9, R10
+2   10uF             CAP0603-CAP         C5, C6     
+1   16 MHz           RESONATORSMD        X3         
+2   50K              RESISTOR_0603_NOOUT R7, R8     
+1   ATMEGA328P       MEGA8-AI            IC1        
+1   AYZ0202          AYZ0202             J1         
+1   MCP1700-33       MCP1700SOT89        IC4        
+1   MICROSD-HRS_DM3D MICROSD-HRS_DM3D    U$1        
+1   RGBLED5050       RGBLED5050          LED        
