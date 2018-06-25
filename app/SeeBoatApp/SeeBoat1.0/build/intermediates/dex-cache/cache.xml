@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="f2fa3c43cd84ff21b993c6a237bd6cab7ec65630">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_9fb0a6be7f13ffb8506e264b4d557d63b5fcaeaa/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/.android/build-cache/bd9f44082590ac32ce7229db1bd5a03b32796e37/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="987adec819c9a98faf215814f41195da48fc724e">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_071dd4c6a2779bf61e841136159f6fbb2509ce46/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/.android/build-cache/2f52ffbc1fc66e3f1c5de611281dabcc15a72f65/output/jars/libs/jbox2d-library-2.1.2.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="2c402f35264b3dcadec2d9b1dbd747313e47df21">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10/jbox2d-library-2.1.2.2_1ce9a3b261da89ca37f26141174f396d1be57747/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/.android/build-cache/316547c5e54527edc7e63865658850902b0b82e8/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_a3019273e5e0100a5456c05b4e2c50dad6cd6edf/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/.android/build-cache/52b1b6ab2e979474ef1c5738bc228550bab34623/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ee5e48964ee7ebd41311d122d0e872ab59129eec/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/.android/build-cache/584199ad131201e2106bedd94a366314c4371e73/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="ebcb0bcf52fab7c586f39717f7cb8de91748b1b1">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f04463f7ab73bbce12aefd06d7eddc85f24c6708/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/.android/build-cache/9a7a934c854ab73da9be2af855644f3fcd915f1e/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="3a1bac2cc31df44dbf1f9bbf2c675319503c9271">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d6a1d060a6e609f32f3e29fd9b74583179c20376/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/Programs/Android/Sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10/constraint-layout-solver-1.0.2_2623c85f85c3da0119ef7a7176d716f55dd2dcd3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/Dropbox (MIT)/all/SeeBoat/SeeBoat1.0/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
+        <dex dex="/home/robertch/Dropbox (MIT)/all/SeeBoat/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_6bab95bf832d69950dfa2d08ae914b5327d83a84/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/.android/build-cache/2f52ffbc1fc66e3f1c5de611281dabcc15a72f65/output/jars/libs/slf4j-api-1.7.22.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="d0d5b842073f5861a3c9628205ebcfced125748c">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10/slf4j-api-1.7.22_ebd64c994b2bc79f860750a61a71702061bb0539/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/.android/build-cache/3881da60ee914175ebfee5fca54f55b6889fb873/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="68ccc59894d6006f4535325b3e7777f0aeec7865">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_66bf0e22bf03b28f39b791b15f545bfaf0060cc6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/Programs/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/25.3.1/support-annotations-25.3.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.3.1_604a026f56d2cb4103041d29e9cb6b9651d46f06/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.1.0/96a07041a11a09cf578892932d7511e1e11e3b6c/kotlin-stdlib-1.1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="96a07041a11a09cf578892932d7511e1e11e3b6c">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10/kotlin-stdlib-1.1.0_2c2cd1a12f9d6414034db4170c539a0675a79507/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/.android/build-cache/de7ed97fe9849c8305e4d2e7bf963c67e5e71baa/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_122db8c7894b1a72b1f569b43fe51e724b080cc0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="919f0dfe192fb4e063e7dacadee7f8bb9a2672a9">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10/annotations-13.0_625f944a3264198ddad9d3f2c530bc406dab9dff/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/.android/build-cache/bd9f44082590ac32ce7229db1bd5a03b32796e37/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="987adec819c9a98faf215814f41195da48fc724e">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_071dd4c6a2779bf61e841136159f6fbb2509ce46/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/Dropbox (MIT)/all/SeeBoat/SeeBoat1.0/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="066fc54670e2fea160a5f45c8cbf3125634201f8">
+        <dex dex="/home/robertch/Dropbox (MIT)/all/SeeBoat/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_674e82eeccb591bb166f53ba3269f37822c79fcc/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/.android/build-cache/e4fd9054f0c74a4050af0f1b7ddbc473538985b7/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="927e8ef5711b115b65b2f35495d77352be2b3c09">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_64f3b5884fc59b77d81c686277687f5e25ba6bd0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/.android/build-cache/71dbced2b0873b3ff5bc60824fcd24d96ca4bff6/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_8171c61eac488e11d502ed99271565341795055a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/.android/build-cache/9adb806e89f99b6c5ae244ba5ce6f91ff52726b5/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_94ec6cebcf0b7d22a32a1363660d760ec552a6fd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/.android/build-cache/c6e490ee23119e77269c294b83f4165987f765a3/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="914f5d3e3ace66080e59613708f06d129a222e25">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d0c71e7e6f316809aea8f047acaadf272befd5c0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/.android/build-cache/2f52ffbc1fc66e3f1c5de611281dabcc15a72f65/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="45324c45a80e830bf36a3ee8228107ca16007d68">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_af0b812b38db38811fe0c8e46731df48724a1afc/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/.android/build-cache/44e5a7d62dda7e407d69f261b20cf12e01b3cd5b/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_cd25985bddfb30fc01691bf88a709d481bbb2026/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/.gradle/caches/modules-2/files-2.1/io.reactivex/rxjava/1.1.6/2586312cd2b8a511e4c6236736f5a039fc0f2273/rxjava-1.1.6.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="2586312cd2b8a511e4c6236736f5a039fc0f2273">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10/rxjava-1.1.6_b30d264837253c8d3fc4365b594b3af8d6736e88/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="28b9f2f46a0adb79964475c543705a1128a74bf9">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_9fb0a6be7f13ffb8506e264b4d557d63b5fcaeaa/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/.android/build-cache/0fb536e2a5c345960db09f73c406067d92ca0683/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b6e1574bc08aeca127144bf80ce002d881dc9304/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_69be7c5b21d449a1c1d4dd70d4d10e2a9ad105a2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_69be7c5b21d449a1c1d4dd70d4d10e2a9ad105a2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/.gradle/caches/modules-2/files-2.1/io.reactivex/rxkotlin/0.60.0/6729c889262e7c2cb6bba30cb9aa93d78167f69b/rxkotlin-0.60.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="6729c889262e7c2cb6bba30cb9aa93d78167f69b">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10/rxkotlin-0.60.0_361181f29453ae36f6af2b1c71dfe5595a17eba4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/.android/build-cache/2098e04c7405ef3fbac74dfd5c1a6945b47ba71b/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2c7d03c52b7f6256e954368600f88268433828aa/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/.android/build-cache/636784566851d496d13dc2aae58e73b6bd6e96ca/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_66d286140d8ed53bc329ae05ee65245616d88784/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/robertch/.android/build-cache/9b68c91167b4634ad9a085e4a48635bc73a7e709/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="/home/robertch/Dropbox (MIT)/Code/AndroidStudioProjects/SeeBoat1.0/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d0fa894474c6134a59004eb1d513651606c10896/classes.dex" />
+    </item>
+
+</items>

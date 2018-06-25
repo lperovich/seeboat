@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
+        <dex dex="/Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_455e21b879de6df5c3ec98132f524d5b571dc3db/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="68e15c261f54290a20ce5c6397eebe857e4aab63">
+        <dex dex="/Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_ff8953adddd879015f91cdad94532ea8b8185ce7/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Sophia/.android/build-cache/6703d7d0283dcb9d8ce45f78201b678054bebd66/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="6d7d803871e3203465f71a163e7af104f807b446">
+        <dex dex="/Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/build/intermediates/pre-dexed/debug/classes_9236d370fd59ce8406509308a85091c62fb03bdf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Sophia/.android/build-cache/eb52311f50bcba2431a93695864410115c407ebc/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f62e763609f65e47dc6c498760a4accf02776788">
+        <dex dex="/Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/build/intermediates/pre-dexed/debug/classes_e9b9c9663b8990d2f0b98f7e9184ccedbd5bfb89.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Sophia/.android/build-cache/6703d7d0283dcb9d8ce45f78201b678054bebd66/output/jars/libs/internal_impl-24.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f78c2f395cb096f9dc1dc07e729922b8fcd3c4f5">
+        <dex dex="/Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/build/intermediates/pre-dexed/debug/internal_impl-24.1.1_3684ed9848fd486b222a4745734f8ff60d24b896.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Sophia/.android/build-cache/5b1a555c11c6b690d67c9c571d886329fe9bf6ef/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c936c1bd42f0c018c18920c7bec619ef056b24f8">
+        <dex dex="/Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/build/intermediates/pre-dexed/debug/classes_5707fbcddebcd9752ceb930e11047e172e7b437e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Sophia/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.1.1/support-annotations-24.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3af19f153122737b372622fa6c81dd11a1c6b999">
+        <dex dex="/Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/build/intermediates/pre-dexed/debug/support-annotations-24.1.1_d07284f1ad1d0879dedfc8002f4442a20d3843b5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Sophia/.android/build-cache/44a29595f9a59350d9a59e03e7e96bf4344ecfff/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4add8aa95c9f4e9a2ad64b7e2bf08e97e28955c1">
+        <dex dex="/Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/build/intermediates/pre-dexed/debug/classes_3f8ad683acfbc52d015cc9c2b94cda700bbc794f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Sophia/.android/build-cache/b022c01c5d89e2c0d77cd3ba530ec68c16bc3148/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8a5380ddd58f4f8946ddade4c64dd77de4a836d5">
+        <dex dex="/Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/build/intermediates/pre-dexed/debug/classes_b9cf5c077ee2b0fe8d8f0998823da0d28a133880.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Sophia/.android/build-cache/0ff00ace78fed401d2be2fc4b52be90bd72ef7f2/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="1256c10604bb098490eab070d76754ac5ceab35c">
+        <dex dex="/Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/build/intermediates/pre-dexed/debug/classes_f27c9fd51067bf129af79e19d1ba197be7e54353.jar" />
+    </item>
+
+</items>

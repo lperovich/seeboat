@@ -1,0 +1,71 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml:18:1-52:12
+	package
+		ADDED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml:19:5-70
+	android:versionName
+		ADDED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml:21:5-30
+		INJECTED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml
+		INJECTED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml
+	android:versionCode
+		ADDED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml:20:5-28
+		INJECTED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml
+		INJECTED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml:18:11-69
+application
+ADDED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml:28:5-50:19
+MERGED from [com.android.support:gridlayout-v7:24.1.1] /Users/Sophia/.android/build-cache/b022c01c5d89e2c0d77cd3ba530ec68c16bc3148/output/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:cardview-v7:24.1.1] /Users/Sophia/.android/build-cache/44a29595f9a59350d9a59e03e7e96bf4344ecfff/output/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:24.1.1] /Users/Sophia/.android/build-cache/0ff00ace78fed401d2be2fc4b52be90bd72ef7f2/output/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:animated-vector-drawable:24.1.1] /Users/Sophia/.android/build-cache/5b1a555c11c6b690d67c9c571d886329fe9bf6ef/output/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-vector-drawable:24.1.1] /Users/Sophia/.android/build-cache/eb52311f50bcba2431a93695864410115c407ebc/output/AndroidManifest.xml:23:5-20
+MERGED from [com.android.support:support-v4:24.1.1] /Users/Sophia/.android/build-cache/6703d7d0283dcb9d8ce45f78201b678054bebd66/output/AndroidManifest.xml:25:5-20
+	android:label
+		ADDED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml:30:9-41
+	android:allowBackup
+		ADDED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml:32:9-35
+	android:icon
+		ADDED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml:29:9-45
+	android:theme
+		ADDED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml:31:9-47
+activity#com.example.android.actionbarcompat.shareactionprovider.MainActivity
+ADDED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml:34:9-41:20
+	android:name
+		ADDED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml:35:13-41
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml:37:13-40:29
+action#android.intent.action.MAIN
+ADDED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml:38:17-69
+	android:name
+		ADDED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml:38:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml:39:17-77
+	android:name
+		ADDED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml:39:27-74
+provider#com.example.android.actionbarcompat.shareactionprovider.content.AssetProvider
+ADDED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml:44:9-48:39
+	android:authorities
+		ADDED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml:46:13-90
+	android:grantUriPermissions
+		ADDED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml:47:13-47
+	android:exported
+		ADDED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml:48:13-36
+	android:name
+		ADDED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml:45:13-50
+uses-sdk
+INJECTED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:gridlayout-v7:24.1.1] /Users/Sophia/.android/build-cache/b022c01c5d89e2c0d77cd3ba530ec68c16bc3148/output/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:cardview-v7:24.1.1] /Users/Sophia/.android/build-cache/44a29595f9a59350d9a59e03e7e96bf4344ecfff/output/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:24.1.1] /Users/Sophia/.android/build-cache/0ff00ace78fed401d2be2fc4b52be90bd72ef7f2/output/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:animated-vector-drawable:24.1.1] /Users/Sophia/.android/build-cache/5b1a555c11c6b690d67c9c571d886329fe9bf6ef/output/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:24.1.1] /Users/Sophia/.android/build-cache/eb52311f50bcba2431a93695864410115c407ebc/output/AndroidManifest.xml:21:5-43
+MERGED from [com.android.support:support-v4:24.1.1] /Users/Sophia/.android/build-cache/6703d7d0283dcb9d8ce45f78201b678054bebd66/output/AndroidManifest.xml:21:5-23:54
+	tools:overrideLibrary
+		ADDED from [com.android.support:appcompat-v7:24.1.1] /Users/Sophia/.android/build-cache/0ff00ace78fed401d2be2fc4b52be90bd72ef7f2/output/AndroidManifest.xml:23:9-75
+	android:targetSdkVersion
+		INJECTED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml
+		INJECTED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml
+		INJECTED from /Users/Sophia/Dropbox (MIT)/all/SeeBoat/ActionBarCompat-ShareActionProvider/Application/src/main/AndroidManifest.xml

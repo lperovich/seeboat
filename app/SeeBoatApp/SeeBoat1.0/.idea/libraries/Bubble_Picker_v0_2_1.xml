@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Bubble-Picker-v0.2.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.android/build-cache/df9c339a6d3caf6d2104e92c940a17583568b569/output/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.android/build-cache/df9c339a6d3caf6d2104e92c940a17583568b569/output/jars/libs/slf4j-api-1.7.22.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/df9c339a6d3caf6d2104e92c940a17583568b569/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/df9c339a6d3caf6d2104e92c940a17583568b569/output/jars/libs/jbox2d-library-2.1.2.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
