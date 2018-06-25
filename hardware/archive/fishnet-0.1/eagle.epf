@@ -1,0 +1,22 @@
+[Eagle]
+Version="06 02 00"
+Platform="Linux"
+Serial="62191E841E-LSR-WLM-1EL"
+Globals="Globals"
+Desktop="Desktop"
+
+[Globals]
+AutoSaveProject=1
+UsedLibrary="/home/perovich/.eagle/eagle-6.2.0/lbr/fab.lbr"
+UsedLibrary="/home/perovich/.eagle/eagle-6.2.0/lbr/supply1.lbr"
+UsedLibrary="/home/perovich/.eagle/eagle-6.2.0/lbr/supply2.lbr"
+
+[Win_1]
+Type="Control Panel"
+Loc="259 25 1453 833"
+State=2
+Number=0
+
+[Desktop]
+Screen="1600 900"
+Window="Win_1"
