@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.2">
+<eagle version="8.6.3">
 <drawing>
 <settings>
-<setting alwaysvectorfont="yes"/>
+<setting alwaysvectorfont="no"/>
+<setting keepoldvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
@@ -659,24 +660,6 @@ Simple SMD single-pull double-throw slide switch. Good for  less than 350mA powe
 </library>
 <library name="adafruit">
 <packages>
-<package name="RGBLED5050">
-<wire x1="-2.5" y1="2.5" x2="2.5" y2="2.5" width="0.127" layer="21"/>
-<wire x1="2.5" y1="2.5" x2="2.5" y2="-1" width="0.127" layer="21"/>
-<wire x1="2.5" y1="-1" x2="2.5" y2="-2.5" width="0.127" layer="21"/>
-<wire x1="2.5" y1="-2.5" x2="1" y2="-2.5" width="0.127" layer="21"/>
-<wire x1="1" y1="-2.5" x2="-2.5" y2="-2.5" width="0.127" layer="21"/>
-<wire x1="-2.5" y1="-2.5" x2="-2.5" y2="2.5" width="0.127" layer="21"/>
-<circle x="0" y="0" radius="2.1" width="0.127" layer="21"/>
-<smd name="1" x="-2" y="1.7" dx="2" dy="1.1" layer="1"/>
-<smd name="2" x="-2" y="0" dx="2" dy="1.1" layer="1"/>
-<smd name="3" x="-2" y="-1.7" dx="2" dy="1.1" layer="1"/>
-<smd name="4" x="2" y="-1.7" dx="2" dy="1.1" layer="1"/>
-<smd name="5" x="2" y="0" dx="2" dy="1.1" layer="1"/>
-<smd name="6" x="2" y="1.7" dx="2" dy="1.1" layer="1"/>
-<text x="-1.7" y="2.9" size="1.27" layer="25" font="vector">&gt;NAME</text>
-<text x="-2" y="-4.1" size="1.27" layer="27" font="vector">&gt;VALUE</text>
-<wire x1="2.5" y1="-1" x2="1" y2="-2.5" width="0.127" layer="21"/>
-</package>
 <package name="FEATHERWING">
 <wire x1="2.54" y1="0" x2="48.26" y2="0" width="0" layer="20"/>
 <wire x1="48.26" y1="0" x2="50.8" y2="2.54" width="0" layer="20" curve="90"/>
@@ -767,39 +750,6 @@ Simple SMD single-pull double-throw slide switch. Good for  less than 350mA powe
 </package>
 </packages>
 <symbols>
-<symbol name="RGBLED">
-<wire x1="1.27" y1="5.08" x2="-5.08" y2="5.08" width="0.254" layer="94"/>
-<wire x1="1.27" y1="0" x2="-5.08" y2="0" width="0.254" layer="94"/>
-<wire x1="1.27" y1="-5.08" x2="-5.08" y2="-5.08" width="0.254" layer="94"/>
-<wire x1="1.27" y1="6.35" x2="1.27" y2="5.08" width="0.254" layer="94"/>
-<wire x1="1.27" y1="5.08" x2="1.27" y2="3.81" width="0.254" layer="94"/>
-<wire x1="1.27" y1="1.27" x2="1.27" y2="0" width="0.254" layer="94"/>
-<wire x1="1.27" y1="0" x2="1.27" y2="-1.27" width="0.254" layer="94"/>
-<wire x1="1.27" y1="-6.35" x2="1.27" y2="-5.08" width="0.254" layer="94"/>
-<wire x1="1.27" y1="-5.08" x2="1.27" y2="-3.81" width="0.254" layer="94"/>
-<wire x1="1.27" y1="5.08" x2="-1.27" y2="6.35" width="0.254" layer="94"/>
-<wire x1="-1.27" y1="6.35" x2="-1.27" y2="3.81" width="0.254" layer="94"/>
-<wire x1="-1.27" y1="3.81" x2="1.27" y2="5.08" width="0.254" layer="94"/>
-<wire x1="1.27" y1="0" x2="-1.27" y2="1.27" width="0.254" layer="94"/>
-<wire x1="-1.27" y1="1.27" x2="-1.27" y2="-1.27" width="0.254" layer="94"/>
-<wire x1="-1.27" y1="-1.27" x2="1.27" y2="0" width="0.254" layer="94"/>
-<wire x1="1.27" y1="-5.08" x2="-1.27" y2="-3.81" width="0.254" layer="94"/>
-<wire x1="-1.27" y1="-3.81" x2="-1.27" y2="-6.35" width="0.254" layer="94"/>
-<wire x1="-1.27" y1="-6.35" x2="1.27" y2="-5.08" width="0.254" layer="94"/>
-<wire x1="1.27" y1="5.08" x2="5.08" y2="5.08" width="0.254" layer="94"/>
-<wire x1="1.27" y1="-5.08" x2="5.08" y2="-5.08" width="0.254" layer="94"/>
-<wire x1="5.08" y1="0" x2="1.27" y2="0" width="0.254" layer="94"/>
-<text x="-3.81" y="8.89" size="1.778" layer="95">&gt;NAME</text>
-<text x="2.54" y="-3.81" size="1.778" layer="94">Red</text>
-<text x="2.54" y="1.27" size="1.778" layer="94">Grn</text>
-<text x="2.54" y="6.35" size="1.778" layer="94">Blue</text>
-<pin name="BLUE_C" x="5.08" y="5.08" visible="off" length="point" rot="R180"/>
-<pin name="GREEN_C" x="5.08" y="0" visible="off" length="point" rot="R180"/>
-<pin name="GREEN_A" x="-5.08" y="0" visible="off" length="point"/>
-<pin name="RED_C" x="5.08" y="-5.08" visible="off" length="point" rot="R180"/>
-<pin name="BLUE_A" x="-5.08" y="5.08" visible="off" length="point"/>
-<pin name="RED_A" x="-5.08" y="-5.08" visible="off" length="point"/>
-</symbol>
 <symbol name="MICROSHIELD">
 <wire x1="0" y1="33.02" x2="0" y2="22.86" width="0.254" layer="94"/>
 <wire x1="0" y1="22.86" x2="0" y2="12.7" width="0.254" layer="94"/>
@@ -854,27 +804,6 @@ Simple SMD single-pull double-throw slide switch. Good for  less than 350mA powe
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="RGBLED" prefix="LED">
-<description>For 5050 RGB LEDs, the order of the LEDs may vary from one manufacturer to another!</description>
-<gates>
-<gate name="G$1" symbol="RGBLED" x="0" y="0"/>
-</gates>
-<devices>
-<device name="5050" package="RGBLED5050">
-<connects>
-<connect gate="G$1" pin="BLUE_A" pad="3"/>
-<connect gate="G$1" pin="BLUE_C" pad="4"/>
-<connect gate="G$1" pin="GREEN_A" pad="1"/>
-<connect gate="G$1" pin="GREEN_C" pad="6"/>
-<connect gate="G$1" pin="RED_A" pad="2"/>
-<connect gate="G$1" pin="RED_C" pad="5"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
 <deviceset name="FEATHERWING" prefix="MS">
 <gates>
 <gate name="G$1" symbol="MICROSHIELD" x="-25.4" y="-15.24"/>
@@ -1792,16 +1721,10 @@ W = angled&lt;p&gt;
 <part name="P+10" library="supply1" deviceset="VCC" device=""/>
 <part name="R9" library="microbuilder" deviceset="RESISTOR" device="_0603_NOOUT" value="4.7K"/>
 <part name="R10" library="microbuilder" deviceset="RESISTOR" device="_0603_NOOUT" value="4.7K"/>
-<part name="LED" library="adafruit" deviceset="RGBLED" device="5050" value=""/>
-<part name="GND7" library="supply1" deviceset="GND" device=""/>
 <part name="TEMP" library="con-lstb" deviceset="MA04-1" device=""/>
-<part name="R4" library="microbuilder" deviceset="RESISTOR" device="_0603_NOOUT" value="10K"/>
-<part name="R5" library="microbuilder" deviceset="RESISTOR" device="_0603_NOOUT" value="10K"/>
-<part name="R6" library="microbuilder" deviceset="RESISTOR" device="_0603_NOOUT" value="10K"/>
 <part name="COND" library="con-lstb" deviceset="MA04-1" device=""/>
 <part name="TURB" library="pinhead" deviceset="PINHD-1X3" device=""/>
 <part name="LEDSTRAND" library="con-lstb" deviceset="MA04-1" device=""/>
-<part name="GND1" library="supply1" deviceset="GND" device=""/>
 <part name="MS1" library="adafruit" deviceset="FEATHERWING" device=""/>
 <part name="PH" library="con-lstb" deviceset="MA04-1" device="">
 <attribute name="MF" value=""/>
@@ -1826,18 +1749,10 @@ W = angled&lt;p&gt;
 <instance part="P+10" gate="VCC" x="108.966" y="147.574"/>
 <instance part="R9" gate="G$1" x="98.806" y="136.398" rot="R90"/>
 <instance part="R10" gate="G$1" x="108.966" y="136.398" rot="R90"/>
-<instance part="LED" gate="G$1" x="203.2" y="67.31" smashed="yes">
-<attribute name="NAME" x="199.39" y="76.2" size="1.778" layer="95"/>
-</instance>
-<instance part="GND7" gate="1" x="204.47" y="45.72"/>
 <instance part="TEMP" gate="1" x="172.212" y="94.996"/>
-<instance part="R4" gate="G$1" x="184.912" y="72.771" rot="R180"/>
-<instance part="R5" gate="G$1" x="184.531" y="66.04" rot="R180"/>
-<instance part="R6" gate="G$1" x="185.42" y="58.42" rot="R180"/>
 <instance part="COND" gate="1" x="144.018" y="95.758"/>
 <instance part="TURB" gate="A" x="140.335" y="54.356" rot="R180"/>
 <instance part="LEDSTRAND" gate="1" x="138.43" y="124.46"/>
-<instance part="GND1" gate="1" x="226.06" y="71.12"/>
 <instance part="MS1" gate="G$1" x="76.2" y="48.26"/>
 <instance part="PH" gate="1" x="196.85" y="95.25"/>
 <instance part="JP1" gate="G$1" x="104.14" y="109.22" rot="R90"/>
@@ -1847,14 +1762,6 @@ W = angled&lt;p&gt;
 </busses>
 <nets>
 <net name="GND" class="0">
-<segment>
-<pinref part="GND7" gate="1" pin="GND"/>
-<pinref part="LED" gate="G$1" pin="GREEN_C"/>
-<pinref part="LED" gate="G$1" pin="RED_C"/>
-<wire x1="208.28" y1="67.31" x2="208.28" y2="62.23" width="0.1524" layer="91"/>
-<wire x1="208.28" y1="62.23" x2="204.47" y2="48.26" width="0.1524" layer="91"/>
-<junction x="208.28" y="62.23"/>
-</segment>
 <segment>
 <pinref part="J1" gate="G$1" pin="5"/>
 <wire x1="200.66" y1="124.46" x2="192.786" y2="124.46" width="0.1524" layer="91"/>
@@ -1877,11 +1784,6 @@ W = angled&lt;p&gt;
 <wire x1="142.875" y1="51.816" x2="153.797" y2="51.816" width="0.1524" layer="91"/>
 <pinref part="TURB" gate="A" pin="1"/>
 <label x="154.94" y="50.8" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="LED" gate="G$1" pin="BLUE_C"/>
-<wire x1="208.28" y1="72.39" x2="226.06" y2="73.66" width="0.1524" layer="91"/>
-<pinref part="GND1" gate="1" pin="GND"/>
 </segment>
 <segment>
 <pinref part="MS1" gate="G$1" pin="GND"/>
@@ -2009,21 +1911,6 @@ W = angled&lt;p&gt;
 <label x="217.17" y="97.79" size="1.016" layer="95"/>
 </segment>
 </net>
-<net name="N$22" class="0">
-<segment>
-<pinref part="LED" gate="G$1" pin="BLUE_A"/>
-<wire x1="198.12" y1="72.39" x2="192.913" y2="71.12" width="0.1524" layer="91"/>
-<pinref part="R4" gate="G$1" pin="1"/>
-<wire x1="192.913" y1="71.12" x2="189.992" y2="72.771" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$23" class="0">
-<segment>
-<pinref part="R5" gate="G$1" pin="1"/>
-<wire x1="198.12" y1="67.31" x2="189.611" y2="66.04" width="0.1524" layer="91"/>
-<pinref part="LED" gate="G$1" pin="GREEN_A"/>
-</segment>
-</net>
 <net name="D11" class="0">
 <segment>
 <wire x1="104.14" y1="106.68" x2="103.84" y2="88.14" width="0.1524" layer="91"/>
@@ -2056,24 +1943,12 @@ W = angled&lt;p&gt;
 </net>
 <net name="D9" class="0">
 <segment>
-<label x="175.0822" y="72.6694" size="1.778" layer="95"/>
-<wire x1="179.832" y1="72.771" x2="174.9806" y2="72.7456" width="0.1524" layer="91"/>
-<pinref part="R4" gate="G$1" pin="2"/>
-</segment>
-<segment>
 <label x="109.22" y="88.392" size="1.016" layer="95"/>
 <wire x1="109.22" y1="106.68" x2="109.26" y2="88.2994" width="0.1524" layer="91"/>
 <pinref part="MS1" gate="G$1" pin="GPIO9"/>
 <pinref part="JP1" gate="G$1" pin="8"/>
 <junction x="109.22" y="106.68"/>
 <wire x1="109.22" y1="106.68" x2="109.22" y2="86.36" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$1" class="0">
-<segment>
-<pinref part="R6" gate="G$1" pin="1"/>
-<pinref part="LED" gate="G$1" pin="RED_A"/>
-<wire x1="198.12" y1="62.23" x2="190.5" y2="58.42" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="VBAT" class="0">
@@ -2139,11 +2014,6 @@ W = angled&lt;p&gt;
 </net>
 <net name="D6" class="0">
 <segment>
-<label x="173.863" y="66.421" size="1.4224" layer="95"/>
-<wire x1="179.451" y1="66.04" x2="173.705940625" y2="66.233984375" width="0.1524" layer="91"/>
-<pinref part="R5" gate="G$1" pin="2"/>
-</segment>
-<segment>
 <pinref part="MS1" gate="G$1" pin="GPIO6"/>
 <wire x1="111.76" y1="106.68" x2="111.76" y2="91.44" width="0.1524" layer="91"/>
 <label x="111.76" y="91.44" size="1.778" layer="95"/>
@@ -2153,11 +2023,6 @@ W = angled&lt;p&gt;
 </segment>
 </net>
 <net name="D12" class="0">
-<segment>
-<wire x1="180.34" y1="58.42" x2="170.18" y2="58.42" width="0.1524" layer="91"/>
-<pinref part="R6" gate="G$1" pin="2"/>
-<label x="172.72" y="60.96" size="1.778" layer="95" rot="R180"/>
-</segment>
 <segment>
 <pinref part="MS1" gate="G$1" pin="GPIO12"/>
 <wire x1="101.6" y1="106.68" x2="101.6" y2="91.44" width="0.1524" layer="91"/>
