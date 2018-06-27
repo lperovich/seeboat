@@ -165,7 +165,8 @@
 <dimension x1="13.208" y1="0" x2="14.732" y2="22.86" x3="-5.08" y3="11.43" textsize="3.5" layer="47" dtype="vertical"/>
 <dimension x1="2.54" y1="2.667" x2="2.413" y2="20.32" x3="-2.159" y3="11.4935" textsize="3.5" layer="47" dtype="vertical"/>
 <dimension x1="3.81" y1="20.193" x2="1.27" y2="20.447" x3="2.54" y3="23.622" textsize="3.5" layer="47" dtype="horizontal"/>
-<text x="7.239" y="22.098" size="1.778" layer="26" rot="MR270">controlboard-0.5</text>
+<text x="9.017" y="21.844" size="1.778" layer="26" rot="MR270">controlboard
+v0.5</text>
 <text x="14.478" y="8.128" size="1.016" layer="26" rot="MR180">GND</text>
 <text x="47.752" y="11.303" size="1.016" layer="26" rot="MR180">VCC</text>
 <text x="42.545" y="14.732" size="1.016" layer="26" rot="MR0">SCL</text>
@@ -176,9 +177,9 @@
 <text x="17.018" y="12.319" size="1.016" layer="26" rot="MR0">D13</text>
 <text x="48.133" y="15.748" size="1.016" layer="26" rot="MR180">D10</text>
 <text x="50.419" y="7.239" size="1.016" layer="26" rot="MR0">GND</text>
-<text x="42.926" y="6.858" size="1.016" layer="26" rot="MR0">GND</text>
+<text x="43.18" y="6.858" size="1.016" layer="26" rot="MR0">GND</text>
 <text x="34.163" y="7.112" size="1.016" layer="26" rot="MR0">GND</text>
-<text x="22.479" y="8.128" size="1.016" layer="25" rot="MR180">GND</text>
+<text x="22.479" y="8.128" size="1.016" layer="26" rot="MR180">GND</text>
 <text x="39.878" y="10.541" size="1.016" layer="26" rot="MR180">VCC</text>
 <text x="31.115" y="10.668" size="1.016" layer="26" rot="MR180">VCC</text>
 <text x="22.352" y="10.668" size="1.016" layer="26" rot="MR180">VCC</text>
@@ -1174,4 +1175,10 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </signals>
 </board>
 </drawing>
+<compatibility>
+<note version="6.3" minversion="6.2.2" severity="warning">
+Since Version 6.2.2 text objects can contain more than one line,
+which will not be processed correctly with this version.
+</note>
+</compatibility>
 </eagle>
