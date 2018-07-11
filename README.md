@@ -10,6 +10,7 @@ Sensors: temperature, turbidity, conductivity, pH
 With technical contributions from Don Blair, Robert Henning, Sophia Struckman, and Rod Bayliss. Additional testing and assistance by ECO youth group (GreenRoots), Katherine Paseman, Claudia Chen, and Brian Mayton. 
 
 Thanks to collaborators Sara Wylie (Northeastern University) and Roseann Bongiovanni (GreenRoots). 
+You're welcome.
 
 With partial funding and support from the Council for the Arts at MIT and CRESSH.
 
