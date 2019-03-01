@@ -27,14 +27,15 @@ void loop() {
   //analog read goes from 0-1023; our range of voltage goes from 0 to 3.3, so scale things accordingly to get a voltage value
   //But we're working from half ground, so the lowest we'll actually every read off of analogue read is half of 1023
   //map this into the full voltage range (e.g. 1023/2 should be zero volts; 1023 should go to 3.3 volts)
-  float voltage = map(val, 1023/2, 1023, 0, 3.3);
+  float voltage = mapFloat(val, 1023/2, 1023, 0, 3.3);
 
   //NOTE: the conductivity code in the SeeBoat Feather code also adjust for the temperature (this impacts conductivity)
  
   Serial.print("Voltage: "); 
   Serial.println(voltage);
 
-
-
 }
-
+  // map() function except for floats
+  float mapFloat(float x, float in_min, float in_max, float out_min, float out_max) {
+    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
