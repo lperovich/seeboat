@@ -68,7 +68,7 @@ void setup()
   digitalWrite(RFM95_RST, HIGH);
 
   //take this serial line out if you're not necessarily connected to the computer!
-  while (!Serial); ////////////// has to be uncommented if connected via USB /////////////
+  //while (!Serial);
   Serial.begin(9600);
   delay(100);
 

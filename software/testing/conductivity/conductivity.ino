@@ -30,27 +30,12 @@ void loop() {
   float voltage = mapFloat(val, 1023/2, 1023, 0, 3.3);
 
   //NOTE: the conductivity code in the SeeBoat Feather code also adjust for the temperature (this impacts conductivity)
-
-  //convert voltage to conductivity (microS)
-  float conductivity = voltToCondRes12(voltage); //for resistor = 1.2 kohm
-  //float conductivity = voltToCondRes12(voltage); //for resistor = 1.0 kohm
-
-  Serial.println(conductivity);
+ 
+  Serial.print("Voltage: "); 
+  Serial.println(voltage);
 
 }
   // map() function except for floats
   float mapFloat(float x, float in_min, float in_max, float out_min, float out_max) {
     return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-}
-
-  // converts voltage to conductivity for resistor = 1.2 kohm
-  float voltToCondRes12(float voltage) {
-    return (voltage - 0.0321)/(0.00009); //for smaller probe
-    //return (voltage)*(17698) - 63.105; //for wider probe
-}
-
-  // converts voltage to conductivity for resistor = 1 kohm
-  float voltToCondRes1(float voltage) {
-    return (voltage - 0.011)/0.0001; //for smaller probe
-    //return (voltage)*(21077) + 143.87; //for wider probe
 }

@@ -42,7 +42,7 @@ void measureTemp(){
 
   floatTemperature        = tempMSByte + (tempLSByte * .0625);
   tempVal = floatTemperature;
-
+ 
   /*  DEBUG CODE
   Serial.print    ("Raw Output Byte 01: 0x");
   Serial.println  (tempMSByte, HEX);
@@ -58,12 +58,11 @@ void measureTemp(){
   Serial.print    ("The temperature is... ");
   Serial.print    (floatTemperature, 4);
   Serial.print    ("C, ");
+  Serial.print    ((floatTemperature * (1.8)) + 32, 4);
+  Serial.println  ("F");
+  Serial.println  ();
   */
- // Serial.print    ("The temperature is: ");
- // Serial.print    ((floatTemperature * (1.8)) + 32, 4);
- // Serial.println  ("F");
-  
-//  delay           (1000);
+//  delay           (100);
 
 //  errorStatus = I2c.read(AT30TS750_I2C, AT30TS750_REG_TEMP, 2, temperature);
 //  if (errorStatus != 0) I2CError(errorStatus);
@@ -91,16 +90,15 @@ void measureWater(){
 
 //////////////////////////////////////////////////////////////////
 void measureTurbidity(){
-//   MainSensor = getFrequency(10);//read frequency on pin 10
+   MainSensor = getFrequency(10);//read frequency on pin 10
    
    //WHY ARE WE DOING THIS TWICE??? are they supposed to be reading off different pins??? do we just not need one of them
    //look back at sophia's code...it seems like it's doing the same thing....
- //  Serial.println("before getting frequency");
    kilohertz=getFrequency(10) / 1000.0;  
    //combination kilohertz to microirredence is the 88 part; then kilo to milli
   milliIrradiance=kilohertz/.00088;
-  Serial.print("turbidity: ");
-  Serial.println(milliIrradiance);
+//  Serial.print("turbidity: ");
+//  Serial.println(milliIrradiance);
 }
 
 long getFrequency(int pin) {
@@ -143,46 +141,35 @@ void measurepH(){
    pHVal+=(ph_data[3]-'0')*.1;
    pHVal+=(ph_data[4]-'0')*.01;
    for(int i = 4;i<5;i++)
-    strip.setPixelColor(i,0,0,255);
-   //Serial.print("pH: ");
-    //Serial.println(pHVal);
+    strip.setPixelColor(i,255,255,255);
+   Serial.println("pH: ");
+    Serial.println(pHVal);
   }
  
 }
 
 //////////////////////////////////////////////////////////////////////////////
 void measureConductivity(){
-  tone(power,10000);
+    tone(power,10000);
   val = analogRead(sensor);
+  //float voltage = val/310.303;
 
+  //Verify this part!!
   //analog read goes from 0-1023; our range of voltage goes from 0 to 3.3, so scale things accordingly to get a voltage value
   //But we're working from half ground, so the lowest we'll actually every read off of analogue read is half of 1023
   //map this into the full voltage range (e.g. 1023/2 should be zero volts; 1023 should go to 3.3 volts)
-  float voltage = mapFloat(val, 1023/2, 1023, 0, 3.3);
-
-  //NOTE: the conductivity code in the SeeBoat Feather code also adjust for the temperature (this impacts conductivity)
-
-  //convert voltage to conductivity (microS)
-  condVal = voltToCondRes12(voltage); //for resistor = 1.2 kohm
-  //condVal = voltToCondRes12(voltage); //for resistor = 1.0 kohm
+  float voltage = map(val, 1023/2, 1023, 0, 3.3);
+  
+//  Serial.print("Voltage: "); 
+//  Serial.println(voltage); 
+//Adjust for the temperature (this impacts conductivity)
+//DOUBLE CHECK TO MAKE SURE THE UNITS ARE RIGHT IN THIS ADJUSTMENT!!
+  condVal=voltage/(1+.02*(tempVal-25));
+//  Serial.print("Cond val: ");
+//  Serial.println(condVal);
 }
 
-  // map() function except for floats
-  float mapFloat(float x, float in_min, float in_max, float out_min, float out_max) {
-    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-}
 
-  // converts voltage to conductivity for resistor = 1.2 kohm
-  float voltToCondRes12(float voltage) {
-    return (voltage - 0.0321)/(0.00009); //for smaller probe
-    //return (voltage)*(17698) - 63.105; //for wider probe
-}
-
-  // converts voltage to conductivity for resistor = 1 kohm
-  float voltToCondRes1(float voltage) {
-    return (voltage - 0.011)/0.0001; //for smaller probe
-    //return (voltage)*(21077) + 143.87; //for wider probe
-}
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -326,3 +313,4 @@ void measureTemp(){
 */
 
 //////////////////////////////////////////////////////////////////////////////
+

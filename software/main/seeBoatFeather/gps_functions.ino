@@ -3,10 +3,33 @@ functions to get GPS data
 this gets combined with some of the other data from the data_functions tab 
 If GPS doesn't seem to obtain a fix, make sure that all of the sensors are connected and reupload the code. If in an open area, it should get a fix in under ~30 seconds.
 */
+//////////////////////////////////////////////////////////////////////////////
+void GPSread(){
+    // read data from the GPS in the 'main loop'
+  char c = GPS.read();
+  // if you want to debug, this is a good time to do it!
+  if (GPSECHO)
+    if (c) Serial.print(c);
+    
+  // if a sentence is received, we can check the checksum, parse it...
+  if (GPS.newNMEAreceived()) {
+    // a tricky thing here is if we print the NMEA sentence, or data
+    // we end up not listening and catching other sentences!
+    // so be very wary if using OUTPUT_ALLDATA and trytng to print out data
+    //Serial.println(GPS.lastNMEA()); // this also sets the newNMEAreceived() flag to false
+    if (!GPS.parse(GPS.lastNMEA())) // this also sets the newNMEAreceived() flag to false
+      return; // we can fail to parse a sentence in which case we should just wait for another
+  }
+  // if millis() or timer wraps around, we'll just reset it
+  if (timer > millis()) timer = millis();
+
+
+}
+     
 
 //////////////////////////////////////////////////////////////////////////////
 void GPSsetup(){
-  while (!Serial);  // uncomment to have the sketch wait until Serial is ready
+  //while (!Serial);  // uncomment to have the sketch wait until Serial is ready
   
   // connect at 115200 so we can read the GPS fast enough and echo without dropping chars
   // also spit it out
@@ -29,37 +52,12 @@ void GPSsetup(){
   // Request updates on antenna status, comment out to keep quiet
   GPS.sendCommand(PGCMD_ANTENNA);
 
-  delay(100);
+  delay(1000);
   
   // Ask for firmware version
   GPSSerial.println(PMTK_Q_RELEASE);
 
 }
-
-//////////////////////////////////////////////////////////////////////////////
-void GPSread(){
-    // read data from the GPS in the 'main loop'
-  char c = GPS.read();
-  // if you want to debug, this is a good time to do it!
-
-  if (GPSECHO)
-    if (c) Serial.print(c);
-    
-  // if a sentence is received, we can check the checksum, parse it...
-  if (GPS.newNMEAreceived()) {
-    // a tricky thing here is if we print the NMEA sentence, or data
-    // we end up not listening and catching other sentences!
-    // so be very wary if using OUTPUT_ALLDATA and trying to print out data
-    //Serial.println(GPS.lastNMEA()); // this also sets the newNMEAreceived() flag to false
-    if (!GPS.parse(GPS.lastNMEA())) // this also sets the newNMEAreceived() flag to false
-      return; // we can fail to parse a sentence in which case we should just wait for another
-  }
-  // if millis() or timer wraps around, we'll just reset it
-  if (timer > millis()) timer = millis();
-
-
-}
-     
 //////////////////////////////////////////////////////////////////////////////
 //Function to convert adafruit lat or long values into double that are more useable
 //use this for the GPS values that go in the data array
@@ -114,7 +112,6 @@ void GPSprintDays(){
     Serial.println(GPS.year, DEC);
     Serial.print("Fix: "); Serial.print((int)GPS.fix);
     Serial.print(" quality: "); Serial.println((int)GPS.fixquality);
-    Serial.println();
 
 }
 
@@ -322,3 +319,5 @@ void measureGPS(){
     }
 
 }
+
+

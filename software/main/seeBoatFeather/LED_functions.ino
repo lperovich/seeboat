@@ -10,10 +10,26 @@ void ledStartup() {
   pinMode(outputRed, OUTPUT);
   pinMode(outputBlue, OUTPUT);
   pinMode(outputGreen, OUTPUT);
+
+  //cycle through the colors to test everything
+  setLedColor(0, 0, 0);
+  delay(300);
+  setLedColor(255, 0, 0);
+  delay(500);
+  setLedColor(0, 255, 0);
+  delay(500);
+  setLedColor(0, 0, 255);
+  delay(500);
+  //  while(true){
+  for (int i = 1; i < 255; i++) {
+    setLedColor(i, i, i);
+    delay(10);
+  }
+  //  }
+
 }
 //////////////////////////////////////////////////////////////////////////////
-void tempC1decToColor(int tempC1dec) 
-{
+void tempC1decToColor(int tempC1dec) {
   //Change the color of the LEDs
   //turn oC*10 to oF*10
   int fahrenheit1dec = celciusToFahrenheit1dec(tempC1dec);
@@ -42,7 +58,7 @@ void tempC1decToColor(int tempC1dec)
   outputData(hue);
   converter.hsvToRgb((double)hue/360.0,1,1,rgb);
     for(int i = 0;i<3;i++){
-    strip.setPixelColor(i,rgb[0],rgb[0],rgb[1]);
+    strip.setPixelColor(i,rgb[0],rgb[1],rgb[2]);
   strip.show();                     // Refresh strip
 
   }
@@ -145,7 +161,7 @@ void ledThreeColorTest() {
     setLedColor(0, 0, 0);
 
   //try to get blue...
-  setLedColor(0, 255, 0);
+  setLedColor(0, 0, 255);
 
   //I can't analogue write on pin 9????? aaaargh
   /*
@@ -274,7 +290,6 @@ void setLedColor(int red, int green, int blue) {
   analogWrite(outputRed, red); //Red pin
   analogWrite(outputGreen, green); //green pin
   analogWrite(outputBlue, blue); //blue pin
-  strip.show();
 
   //for debugging
   //showColors(red, green, blue);
