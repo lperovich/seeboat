@@ -78,20 +78,20 @@ void radioSend(){
 
   //THIS IS CAUSING GPS ISSUES! something in this function interfears with us getting a GPS fix. maybe a delay?
   //or it's trying to use the same serial pins or something?......baaaaah I think that should be the fona, not this one....
-//  Serial.println("pre send");
-Serial.print("the data pH ");
-Serial.println(theData.pHVal);
+  Serial.println("pre send");
+//Serial.print("the data pH ");
+//Serial.println(theData.pHVal);
 //Serial.print("the data conductivity: ");
 //Serial.println(theData.condVal);
   rf95.send((uint8_t *)(&theData), sizeof(theData));
   rf95.waitPacketSent();
-//  Serial.println("post send");
+  Serial.println("post send");
   
 //    else Serial.print(" nothing...");
 //    Serial.println();
 //    Blink(LED,3);
 
-//  Serial.print("Sending "); Serial.println(buf);
+ // Serial.print("Sending "); Serial.println(buf);
 //  rf95.send((uint8_t *)buf, sizeof(buf));
 
 }
@@ -240,7 +240,3 @@ void radioListen(){
   }
 }
 */
-
-
-
-

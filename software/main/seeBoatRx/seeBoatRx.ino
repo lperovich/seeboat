@@ -66,7 +66,7 @@ RH_RF95 rf95(RFM95_CS, RFM95_INT);
 
 //version with the seeboat data
 typedef struct {
-  int           deviceID; //store this nodeId
+  int deviceID; //store this nodeId
   float GPSlat; //latitude
   float GPSlong;   //longitude
   //send all the time parts individually; strings have been annoying to send
@@ -103,7 +103,7 @@ void radioSetup(){
   digitalWrite(RFM95_RST, HIGH);
 
   //take this serial line out if you're not necessarily connected to the computer!
-  //while (!Serial);
+  while (!Serial);
   Serial.begin(9600);
   delay(100);
 
@@ -193,4 +193,3 @@ void radioReceive(){
     }
   }
 }
-
