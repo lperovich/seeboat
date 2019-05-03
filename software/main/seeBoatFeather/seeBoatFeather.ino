@@ -31,14 +31,13 @@
 #include <Wire.h>
 //#include <I2C.h> //This doesn't work with the M0!  I think we'll have to switch over to the Wire library
 #include <RH_RF95.h>
-#include <math.h>;
+#include <math.h>
+#include <Arduino.h>
 #include <Adafruit_GPS.h>
 //#include "SoftPWM.h"
 //For radio
 #include <SPI.h>
 //For radio sleep
-//#include "RTCZero.h"
-//RTCZero rtc;
 #include <Adafruit_DotStar.h> //LED Strip Library
 #include <RGBConverter.h>
 //GPS stuff
@@ -48,8 +47,6 @@
 #define address 99 //This is the wire address for our pH sensor 
 // Connect to the GPS on the hardware port
 Adafruit_GPS GPS(&GPSSerial);
-
-
 
 // Set GPSECHO to 'false' to turn off echoing the GPS data to the Serial console
 // Set to 'true' if you want to debug and listen to the raw GPS sentences
@@ -234,7 +231,7 @@ uint32_t pH_timer = millis();
 bool ask_for_data = 1;
 
 //Conductivity Variables
-int power = 5;              //50% square wave (yellow wire)¯Â
+int power = 5;              //50% square wave (yellow wire)Ã‚Â¯Ãƒâ€š
 int sensor = A1;             //final voltage (purple wire)
 float val = 0.0;
 
@@ -244,18 +241,18 @@ float milliIrradiance;
 float MainSensor;
 
 //////////////////LED Strip variables
-#define DATAPIN    11
-#define CLOCKPIN   13
-#define NUMPIXELS 5
-Adafruit_DotStar strip = Adafruit_DotStar(
-  NUMPIXELS, DATAPIN, CLOCKPIN, DOTSTAR_BRG);
+#define DATAPIN    13
+#define CLOCKPIN   11
+#define NUMPIXELS 26
+Adafruit_DotStar strip(NUMPIXELS, DATAPIN, CLOCKPIN, DOTSTAR_BRG);
 
   RGBConverter converter;
   byte rgb[3];
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // the setup routine runs once when you press reset:
-void setup() {
+void setup(){
   pinMode(10,INPUT); //pin for turbidity
+  
   //GPS start up
   GPSsetup();
 
@@ -286,12 +283,6 @@ void setup() {
   clock_prescale_set(clock_div_1); // Enable 16 MHz on Trinket
 #endif
 
-  strip.begin(); // Initialize pins for output
-  strip.show();  // Turn all LEDs off ASAP
-  for(int i = 0;i<5;i++){
-    strip.setPixelColor(i,0xFFFFFF);
-    strip.show();
-  }
   starttime = millis();
   
 }
@@ -309,22 +300,18 @@ void loop() {
   measurepH();
   
   measureConductivity();
+  
     //Measure and print the temperature
-   
-    measureTemp(); 
-//    Serial.println("Temp is here");
-//     Serial.println(tempVal);
-//     Serial.print(",");
+  measureTemp(); 
   
 //turn the temperature into a red-green color
 //temperature input is in degrees C...maybe times 10? tempVal
   tempC1decToColor(tempVal * 10);
 
-  measureTurbidity();
+//measureTurbidity(); // getFrequency() is taking forever to run in measureTurbidity (hopefully b/c nothing was plugged in...)
+  
   //Get the GPS data ready
- 
   GPSread();
- 
   
   // approximately every 2 seconds, finalize the GPS data, put everything together, and send the data over radio
   //2000 is too much probably--the map gets pretty spread out.
@@ -364,14 +351,18 @@ void loop() {
   
     //put all the data together
     dataAssemble();
+
+    Serial.println("pH: " + (String)pHVal);
+    Serial.println("Cond: " + (String)condVal);
+    Serial.println("Temp: " + (String)tempVal);
+    Serial.println("Hue: " + (String)hue);
+    Serial.println("Turbidity is disabled for now");
+    
     
     //Also do the radio send at this time
     radioSend();
-  
   }
 
 
 
 }
-
-
