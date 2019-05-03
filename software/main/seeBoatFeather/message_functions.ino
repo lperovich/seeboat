@@ -92,5 +92,3 @@ void serialPrintTempMessageArray(){
       Serial.println("");
       }
 }
-
-
