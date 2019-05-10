@@ -6,7 +6,7 @@ If GPS doesn't seem to obtain a fix, make sure that all of the sensors are conne
 
 //////////////////////////////////////////////////////////////////////////////
 void GPSsetup(){
-  while (!Serial);  // uncomment to have the sketch wait until Serial is ready
+  //while (!Serial);  // uncomment to have the sketch wait until Serial is ready
   
   // connect at 115200 so we can read the GPS fast enough and echo without dropping chars
   // also spit it out
@@ -266,12 +266,13 @@ void GPSstuff(){
   if (millis() - timer > 2000) {
     timer = millis(); // reset the timer
     GPSprintDays(); //print out day, time, antenna etc
+    /////////// the gps time is GMT ////////////
 
     if (GPS.fix) {
       GPSprintLoc(); //print out location and movement info
       GPSlat = convertDegMinToDecDeg(GPS.latitude);
       Serial.println(GPSlat,5);
-      GPSlong = convertDegMinToDecDeg(GPS.longitude);
+      GPSlong = -1*convertDegMinToDecDeg(GPS.longitude);
       Serial.println(GPSlong,5);
   
     }
@@ -310,7 +311,7 @@ void measureGPS(){
     //note that we're missing a negative sign in there somewhere.. (West not east)
     GPSlat = convertDegMinToDecDeg(GPS.latitude);
 //    Serial.println(GPSlat,5);
-    GPSlong = convertDegMinToDecDeg(GPS.longitude);
+    GPSlong = -1*convertDegMinToDecDeg(GPS.longitude);
 //    Serial.println(GPSlong,5);
 
 //Try putting the radio sending part in here---this got rid of the all zero GPS values in the sample code
