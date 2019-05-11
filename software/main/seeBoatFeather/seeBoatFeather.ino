@@ -8,11 +8,13 @@
 //Added the conductivity part
 //Data assemble all goes together now
 //watch out for the timing in the pH probe--wrong timing means we'll see zero values
-//Switched over to the LED strip
 //GPS worked okay as long as all the I2C stuff was plugged in okay, didn't see any weird dropping off behavior
-//Also changed code to work with the LED strand
 
-//TO DO: Verify that turbidity is working correctly--the code oddly measures one thing twice.
+//Edits from Talia Spring 2019
+//Updated conductivity code.
+//LED strip works with all data types.
+//Integrated all components.
+//Verified that transmitter/reciever functions work.
 
 //Parts:
 //feather radio: sents data to central feather attached to computer
@@ -23,13 +25,12 @@
 //+turns data into something that can be sent
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-///// MUST SWTICH FROM I2C library to WIRE library!! (for temp sensor). M0 doesn't like I2C
-///// GPS HATES DELAYS, WE MUST GET RID OF THEM!!
+// Resolved: MUST SWTICH FROM I2C library to WIRE library!! (for temp sensor). M0 doesn't like I2C, GPS HATES DELAYS, WE MUST GET RID OF THEM!!
+// Resolved: ??what's the best format for this actually? (GPS data format)
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 #include <Wire.h>
-//#include <I2C.h> //This doesn't work with the M0!  I think we'll have to switch over to the Wire library
 #include <RH_RF95.h>
 #include <math.h>
 #include <Arduino.h>
@@ -39,10 +40,9 @@
 #include <SPI.h>
 //For radio sleep
 #include <Adafruit_DotStar.h> //LED Strip Library
-#include <RGBConverter.h>
+//#include <RGBConverter.h>
 //GPS stuff
 //Adafruit_GPS GPS(&Serial1);
-// what's the name of the hardware serial port?
 #define GPSSerial Serial1
 #define address 99 //This is the wire address for our pH sensor 
 // Connect to the GPS on the hardware port
@@ -58,19 +58,20 @@ uint32_t timer = millis();
 
 
 //SEEBOAT LED VARIABLES
-int outputRed = 12;
-int outputGreen = 6;
-//int outputBlue = 9;
-int outputBlue = 9;
-int red = 0;
-int green = 0;
-int blue = 0;
-int yellow = 0;
 int hue = 0;
 uint32_t starttime; 
 //temperature color range (times 10; in oF)
 int lowReading1dec = 660;
 int highReading1dec = 870;
+//conductivity color range (in microS/cm)
+int lowReadingCond = 0;
+int highReadingCond = 10000;
+//temperature color range (unitless)
+int lowReadingPH = 0;
+int highReadingPH = 14;
+//turbidity color range (milli irradiance)
+int lowReadingTurb = 12000; // get these values from Rima
+int highReadingTurb = 60000;
 
 //SEEBOART SENSOR VARIABLES
 const int waterPin = 2;     // the number of the pushbutton pin
@@ -88,9 +89,8 @@ int GPShour;
 int GPSmin;
 int GPSsec;
 int GPSms;
-//String GPStime; //??what's the best format for this actually?
-//char GPStime[12]; //??what's the best format for this actually?
 
+/*
 //temperature variables from past code
 //const int  AT30TS750_I2C =  0x48;    // I2C Address for the temperature sensor
 const int  AT30TS750_I2C =  0x4B;    // I2C Address for the temperature sensor
@@ -101,7 +101,6 @@ byte   tempLSByte       = 0;
 byte   tempMSByte       = 0; 
 float  floatTemperature = 0.0000;
 
-/*
 const byte   AT30TS750_I2Cc        = 0x4B; //1001000
 const byte   AT30TS750_REG_TEMP   = 0x00;  // Register Address: Temperature Value 0x00
 const byte   AT30TS750_REG_CONFIG = 0x01;  // Register Address: Temperature sensor configuration
@@ -116,10 +115,6 @@ int tempC1decB = 0;
 int tempC1decC = 0;
 int tempC1decD = 0;
 */
-
-
-
-
 
 //RADIO VARIABLES
 //For radio
@@ -163,7 +158,6 @@ typedef struct {
   float milliIrradiance;
 } Payload;
 Payload theData;
-
 
 
 /*struct dataPoint {
@@ -236,22 +230,25 @@ int sensor = A1;             //final voltage (purple wire)
 float val = 0.0;
 
 //turbidity variables
+int readingMain = 10;
+float MainSensor;
+float microIrradiance;
+float irradiance;
 float kilohertz;
 float milliIrradiance;
-float MainSensor;
 
 //////////////////LED Strip variables
 #define DATAPIN    13
 #define CLOCKPIN   11
-#define NUMPIXELS 26
+#define NUMPIXELS 100 //can round up, the strip doesn't care if this number goes over actual # of pixels
 Adafruit_DotStar strip(NUMPIXELS, DATAPIN, CLOCKPIN, DOTSTAR_BRG);
 
-  RGBConverter converter;
-  byte rgb[3];
+  //RGBConverter converter; //this was for a single pixel setup, don't need for strip setup
+  //byte rgb[3];
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // the setup routine runs once when you press reset:
 void setup(){
-  pinMode(10,INPUT); //pin for turbidity
+  pinMode(readingMain,INPUT); //pin for turbidity
   
   //GPS start up
   GPSsetup();
@@ -264,7 +261,6 @@ void setup(){
 
   //Start-up the temperature sensor and the other sensors (make sure it matches the address in the function)
   sensorSetup();
-
 
   //Clear the data array
   //I need this to be a two dimensional array (matrix) now--stores the current data and x past data for averaging as needed
@@ -290,25 +286,19 @@ void setup(){
 //uint_8 only goes to 255
 //////////////////////////////////////////////////////////////////////////////////////////////////
 void loop() {
-  
-  //ledThreeColorTest();
 
 //  radioListen();  //we won't need to use this unless maybe we want to try to change the temperature ranges or the variable we're looking at via radio
 
 //get the sensor info
   measureWater();
   measurepH();
-  
   measureConductivity();
+  measureTemp();
+  measureTurbidity(); //getFrequency takes forever to run unless a sensor is actually plugged in, comment this out if no turbidity sensor is plugged in
   
-    //Measure and print the temperature
-  measureTemp(); 
-  
-//turn the temperature into a red-green color
-//temperature input is in degrees C...maybe times 10? tempVal
-  tempC1decToColor(tempVal * 10);
-
-//measureTurbidity(); // getFrequency() is taking forever to run in measureTurbidity (hopefully b/c nothing was plugged in...)
+//turn the data into a red-green color
+//you can input: "temperature", "conductivity", "turbidity", or "pH" to get the LEDs to correspond to certain data
+  dataToColor("temperature");
   
   //Get the GPS data ready
   GPSread();
@@ -327,10 +317,10 @@ void loop() {
     if (GPS.fix) {
       GPSprintLoc(); //print out location and movement info
       GPSlat = convertDegMinToDecDeg(GPS.latitude);
-      Serial.println("lat:");
+      Serial.print("lat: ");
       Serial.println(GPSlat,5);
-      GPSlong = convertDegMinToDecDeg(GPS.longitude);
-      Serial.println("lon:");
+      GPSlong = -1*convertDegMinToDecDeg(GPS.longitude);
+      Serial.print("lon: ");
       Serial.println(GPSlong,5);
   //Add time here, possibly date
     GPShour =  GPS.hour;
@@ -352,11 +342,12 @@ void loop() {
     //put all the data together
     dataAssemble();
 
+    //print out all the measured data
     Serial.println("pH: " + (String)pHVal);
     Serial.println("Cond: " + (String)condVal);
     Serial.println("Temp: " + (String)tempVal);
     Serial.println("Hue: " + (String)hue);
-    Serial.println("Turbidity is disabled for now");
+    Serial.println("Turb: " + (String)milliIrradiance);
     
     
     //Also do the radio send at this time

@@ -2,6 +2,7 @@
 functions to get data from each of the sensors and put it together into a data string to send
 device id, time, water, temperature, conductivity, turbidity, gpslat, gpslong (8 values) 
 */
+
 //////////////////////////////////////////////////////////////////////////////
 void sensorSetup(){
     pinMode(waterPin, INPUT);
@@ -43,7 +44,7 @@ void measureTemp(){
   floatTemperature        = tempMSByte + (tempLSByte * .0625);
   tempVal = floatTemperature;
 
-  /*  DEBUG CODE
+  /*  FOR DEBUGGING CODE
   Serial.print    ("Raw Output Byte 01: 0x");
   Serial.println  (tempMSByte, HEX);
   Serial.print    ("Raw Output Byte 02: 0x");
@@ -62,12 +63,6 @@ void measureTemp(){
  // Serial.print    ("The temperature is: ");
  // Serial.print    ((floatTemperature * (1.8)) + 32, 4);
  // Serial.println  ("F");
-  
-//  delay           (1000);
-
-//  errorStatus = I2c.read(AT30TS750_I2C, AT30TS750_REG_TEMP, 2, temperature);
-//  if (errorStatus != 0) I2CError(errorStatus);
-
 
 }
 
@@ -91,16 +86,28 @@ void measureWater(){
 
 //////////////////////////////////////////////////////////////////
 void measureTurbidity(){
-//   MainSensor = getFrequency(10);//read frequency on pin 10
-   
-   //WHY ARE WE DOING THIS TWICE??? are they supposed to be reading off different pins??? do we just not need one of them
-   //look back at sophia's code...it seems like it's doing the same thing....
- //  Serial.println("before getting frequency");
-   kilohertz=getFrequency(10) / 1000.0;  
-   //combination kilohertz to microirredence is the 88 part; then kilo to milli
-  milliIrradiance=kilohertz/.00088;
-  Serial.print("turbidity: ");
-  Serial.println(milliIrradiance);
+  //Serial.print("About to get frequency avg. ");
+  
+  MainSensor = getFrequency(readingMain);               //returns frequency in Hz
+  //Serial.println("post gottenFrequency");
+  kilohertz=getFrequency(readingMain) / 1000.0;           //converts frequency to kHz 
+
+  /*
+  Serial.print("Average Frequency (Hz) = ");               
+  Serial.println(MainSensor, 4);
+  Serial.println("              ");
+  */
+
+  microIrradiance= kilohertz / .88;               //calculates irradiance
+  milliIrradiance= microIrradiance / .001;
+  
+ /*
+  Serial.print("Irradiance (mW/cm²) =  ");
+  Serial.println(milliIrradiance, 4);
+  Serial.println("____________________________________");
+
+  delay(1000);
+  */
 }
 
 long getFrequency(int pin) {
@@ -142,8 +149,6 @@ void measurepH(){
    pHVal+=ph_data[1]-'0'; //convert char array to float 
    pHVal+=(ph_data[3]-'0')*.1;
    pHVal+=(ph_data[4]-'0')*.01;
-   for(int i = 4;i<5;i++)
-    strip.setPixelColor(i,0,0,255);
    //Serial.print("pH: ");
     //Serial.println(pHVal);
   }
@@ -226,9 +231,8 @@ void dataAssemble(){
 }
 
 /////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////// OLD DON"T USE
+////////////////////////////////////////////////////////////////// OLD DON'T USE
 /////////////////////////////////////////////////////////////////////////////////
-//MAKE SURE I DON"T NEED TO USE THIS ANYMORE!
 //Get part of the temperature readout into normal decimal space (used in another function)
 //tweak this depending on the precision situation
 int tempRightToDecimal(byte byteIn){

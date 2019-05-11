@@ -1,28 +1,50 @@
 /*
- * Updated LED functions for strip of LEDs.
- * For some reason, this is our order of rgb: strip.setPixelColor(index, green, red, blue);
+ * Updated LED functions for strip of LEDs (last one was just for a single LED).
+ * !!!!!!!!!!!!!For some reason, this is our order of rgb: strip.setPixelColor(index, green, red, blue);
  */
 
 void ledStartup() {
     strip.begin();
     strip.show(); // Initialize all pixels to 'off'
     for(int i = 1;i<NUMPIXELS;i++){
-      strip.setPixelColor(i,0xFFFFFF);
+      strip.setPixelColor(i,0xFFFFFF); // goes through and resets all LEDs first to white
     strip.show();}
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-
-void tempC1decToColor(int tempC1dec) 
+// depending on string input, determines which data the LEDs should be demonstrating
+void dataToColor(String dataInput) 
 {
-  //Change the color of the LEDs
-  //turn oC*10 to oF*10
-  int fahrenheit1dec = celciusToFahrenheit1dec(tempC1dec);
+  int dataValue = 0;
+  int low = 0;
+  int high = 0;
   
-  //normalize to get from 0 to 255 overall (scales the temp relative to the temp range
-  int state = normalize(fahrenheit1dec);
+  //Adjust for each data type
+  if (dataInput == "temperature") {
+      //turn oC*10 to oF*10
+      dataValue = celciusToFahrenheit1dec(tempVal*10);
+      low = lowReading1dec;
+      high = highReading1dec; }
+  if (dataInput == "conductivity") {
+      dataValue = condVal; 
+      low = lowReadingCond;
+      high = highReadingCond; }
+  if (dataInput == "turbidity") {
+      dataValue = milliIrradiance; 
+      low = lowReadingTurb;
+      high = highReadingTurb; }
+  if (dataInput == "pH") {
+      dataValue = pHVal; 
+      low = lowReadingPH;
+      high = highReadingPH; }
+  else {
+    Serial.println("Input: " + (String)dataInput + " is not a valid input.");
+    return; }
+
+  //normalize to get from 0 to 255 overall (scales the data relative to the data range)
+  int state = normalize(dataValue, low, high);
   
-  //turn the temperature state of affairs into a color (i.e. value from 0 to 360)
+  //turn the data state of affairs into a color (i.e. value from 0 to 21845)
   //We want just the red/greens, so this function does some chopping off of color wheel sections!
   hue = stateToColor(state);
 
@@ -65,9 +87,9 @@ int celciusToFahrenheit1dec(int celcius1dec) {
 
 //Normalize the temperature
 //we go back to decimal values here instead of multiplied by 100
-int normalize(int fahrenheit1dec) {
+int normalize(int dataValue, int low, int high) {
   //low and high should be globally defined
-  int state = normf(fahrenheit1dec, lowReading1dec, highReading1dec);
+  int state = normf(dataValue, low, high);
   return (state);
 }
 

@@ -218,13 +218,13 @@ void radioListen(){
       //reset the time (so we start playing at the beginning of the message, not halfway through) (maybe this isn't good??)
       playLoopStartTime = millis();
       j=0;
-*/
+
 
 //FIND A WAY TO STORE THIS AS NORMAL NUMBERS THAT WE CAN USE LIKE BEFORE
 //Right now we are getting things like: 3 6 9 C 63 63 63 63 63 63 63 63 63 63 63 
 //(63=99 in hex)
       
- /*     // Send a reply
+    // Send a reply
       uint8_t data[] = "And hello back to you";
       rf95.send(data, sizeof(data));
       rf95.waitPacketSent();
