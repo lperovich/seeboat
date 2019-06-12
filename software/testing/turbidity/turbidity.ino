@@ -62,11 +62,11 @@ void loop() {
 ////////////////////////////////////// FUNCTIONS
 
 long getFrequency(int pin) {
-  #define SAMPLES 500
+  #define SAMPLES 5000
 //  #define SAMPLES 100
   long freq = 0;
   for(unsigned int j=0; j<SAMPLES; j++) 
-    freq+= 500000/pulseIn(pin, HIGH, 250000);
+//    freq+= 500000/pulseIn(pin, HIGH, 250000);
+    freq+= 500000/pulseIn(pin, HIGH, 250000); //make the time a bit shorter for now
   return freq / SAMPLES;
 }
-
