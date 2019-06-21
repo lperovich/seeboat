@@ -1,4 +1,4 @@
-# Seeboat
+# SeeBoat
 
 Laura Perovich (perovich@media.mit.edu, Object-based Media, MIT Media Lab)
 
