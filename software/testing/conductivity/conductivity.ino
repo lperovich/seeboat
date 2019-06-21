@@ -3,7 +3,7 @@
 //Wiring should be the same as used on the SeeBoat (see the print out of the conductivity board with labels)
 
 
-int power = 11;              //50% square wave (yellow wire)¯Â
+int power = 5;              //50% square wave (yellow wire) connected to pin 5 on the feather
 int sensor = A1;             //final voltage (purple wire)
 float val = 0.0;
 

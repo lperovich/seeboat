@@ -44,13 +44,17 @@
 //GPS stuff
 //Adafruit_GPS GPS(&Serial1);
 #define GPSSerial Serial1
+//#define GPS Serial1
 #define address 99 //This is the wire address for our pH sensor 
 // Connect to the GPS on the hardware port
 Adafruit_GPS GPS(&GPSSerial);
+//Adafruit_GPS GPS;
 
 // Set GPSECHO to 'false' to turn off echoing the GPS data to the Serial console
 // Set to 'true' if you want to debug and listen to the raw GPS sentences
 #define GPSECHO false
+//#define GPSECHO true
+
 // this keeps track of whether we're using the interrupt
 // off by default!
 boolean usingInterrupt = false;
@@ -90,7 +94,7 @@ int GPSmin;
 int GPSsec;
 int GPSms;
 
-/*
+
 //temperature variables from past code
 //const int  AT30TS750_I2C =  0x48;    // I2C Address for the temperature sensor
 const int  AT30TS750_I2C =  0x4B;    // I2C Address for the temperature sensor
@@ -114,7 +118,6 @@ int tempC1decA = 0;
 int tempC1decB = 0;
 int tempC1decC = 0;
 int tempC1decD = 0;
-*/
 
 //RADIO VARIABLES
 //For radio
