@@ -25,15 +25,15 @@ void dataToColor(String dataInput)
       dataValue = celciusToFahrenheit1dec(tempVal*10);
       low = lowReading1dec;
       high = highReading1dec; }
-  if (dataInput == "conductivity") {
+  else if (dataInput == "conductivity") {
       dataValue = condVal; 
       low = lowReadingCond;
       high = highReadingCond; }
-  if (dataInput == "turbidity") {
+  else if (dataInput == "turbidity") {
       dataValue = milliIrradiance; 
       low = lowReadingTurb;
       high = highReadingTurb; }
-  if (dataInput == "pH") {
+  else if (dataInput == "pH") {
       dataValue = pHVal; 
       low = lowReadingPH;
       high = highReadingPH; }

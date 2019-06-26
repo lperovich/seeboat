@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.2">
+<eagle version="9.2.2">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
+<setting keepoldvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="0.25" unitdist="mm" unit="mm" style="lines" multiple="1" display="no" altdistance="0.025" altunitdist="inch" altunit="inch"/>
@@ -20,7 +21,7 @@
 <layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
-<layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
+<layer number="27" name="tValues" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
@@ -50,7 +51,7 @@
 <layer number="54" name="bGND_GNDA" color="1" fill="9" visible="no" active="no"/>
 <layer number="56" name="wert" color="7" fill="1" visible="no" active="no"/>
 <layer number="57" name="tCAD" color="7" fill="1" visible="no" active="no"/>
-<layer number="90" name="Modules" color="5" fill="1" visible="yes" active="yes"/>
+<layer number="90" name="Modules" color="5" fill="1" visible="no" active="no"/>
 <layer number="91" name="Nets" color="2" fill="1" visible="no" active="no"/>
 <layer number="92" name="Busses" color="1" fill="1" visible="no" active="no"/>
 <layer number="93" name="Pins" color="2" fill="1" visible="no" active="no"/>
@@ -130,7 +131,11 @@
 <wire x1="27.67" y1="2.54" x2="27.67" y2="15.02" width="0" layer="20"/>
 <wire x1="27.67" y1="15.02" x2="12.85" y2="15.02" width="0" layer="20"/>
 <wire x1="12.85" y1="15.02" x2="12.83" y2="2.54" width="0" layer="20"/>
-<text x="26.75" y="8.75" size="1.016" layer="22" rot="MR0">tempBoard 0.1</text>
+<text x="14.25" y="4" size="1.016" layer="22" rot="MR90">tempBoard 0.1</text>
+<text x="16.5" y="3.25" size="1.016" layer="27">R1 10K</text>
+<text x="24" y="9.5" size="1.4224" layer="22" rot="MR0">PWR</text>
+<text x="23.75" y="12" size="1.4224" layer="22" rot="MR0">GND</text>
+<text x="23.75" y="6.75" size="1.4224" layer="22" rot="MR0">SDA</text>
 </plain>
 <libraries>
 <library name="fab">
@@ -268,7 +273,7 @@ W = angled&lt;p&gt;
 <clearance class="0" value="0.2032"/>
 </class>
 </classes>
-<designrules>
+<designrules name="default">
 <description language="de">&lt;b&gt;EAGLE Design Rules&lt;/b&gt;
 &lt;p&gt;
 Die Standard-Design-Rules sind so gewählt, dass sie für 
@@ -344,16 +349,23 @@ design rules under a new name.</description>
 <param name="slThermalsForVias" value="0"/>
 <param name="dpMaxLengthDifference" value="10mm"/>
 <param name="dpGapFactor" value="2.5"/>
-<param name="checkGrid" value="0"/>
 <param name="checkAngle" value="0"/>
 <param name="checkFont" value="1"/>
 <param name="checkRestrict" value="1"/>
+<param name="checkStop" value="0"/>
+<param name="checkValues" value="0"/>
+<param name="checkNames" value="1"/>
+<param name="checkWireStubs" value="1"/>
+<param name="checkPolygonWidth" value="0"/>
 <param name="useDiameter" value="13"/>
 <param name="maxErrors" value="50"/>
 </designrules>
 <autorouter>
 <pass name="Default">
 <param name="RoutingGrid" value="5mil"/>
+<param name="AutoGrid" value="1"/>
+<param name="Efforts" value="0"/>
+<param name="TopRouterVariant" value="1"/>
 <param name="tpViaShape" value="round"/>
 <param name="PrefDir.1" value="|"/>
 <param name="PrefDir.2" value="0"/>
@@ -445,14 +457,25 @@ design rules under a new name.</description>
 </pass>
 </autorouter>
 <elements>
-<element name="C2.0.1U" library="fab" package="C1206" value="CAP-US1206" x="14.64" y="11.68" rot="R90"/>
-<element name="IC2" library="atmel-at30ts75x" package="SO8" value="AT30TS75XSS" x="19.53" y="9.14"/>
-<element name="R1" library="fab" package="R1206" value="" x="14.64" y="5.6" rot="R90"/>
-<element name="SV1" library="con-lstb" package="MA04-1" value="" x="25.4" y="8.89" rot="R90">
-<attribute name="OC_NEWARK" value="unknown" x="45.72" y="29.21" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MPN" value="" x="45.72" y="29.21" size="1.778" layer="27" rot="R90" display="off"/>
+<element name="C2.0.1U" library="fab" package="C1206" value="CAP-US1206" x="14.64" y="11.68" smashed="yes" rot="R90">
+<attribute name="NAME" x="13.37" y="10.41" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="15.93" y="13.66" size="1.016" layer="27" rot="SR0"/>
+</element>
+<element name="IC2" library="atmel-at30ts75x" package="SO8" value="AT30TS75XSS" x="19.53" y="9.14" smashed="yes">
+<attribute name="NAME" x="16.99" y="12.95" size="1.016" layer="25" font="vector" rot="R180" align="top-right"/>
+<attribute name="VALUE" x="16.99" y="4.06" size="1.016" layer="21" font="vector" rot="R180" align="top-right"/>
+</element>
+<element name="R1" library="fab" package="R1206" value="" x="14.64" y="5.6" smashed="yes" rot="R90">
+<attribute name="NAME" x="13.37" y="4.33" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="17.18" y="4.33" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="SV1" library="con-lstb" package="MA04-1" value="" x="25.4" y="8.89" smashed="yes" rot="R90">
 <attribute name="MF" value="" x="45.72" y="29.21" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MPN" value="" x="45.72" y="29.21" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="NAME" x="23.749" y="3.81" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="OC_FARNELL" value="unknown" x="45.72" y="29.21" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="OC_NEWARK" value="unknown" x="45.72" y="29.21" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" x="23.749" y="9.525" size="1.27" layer="27" ratio="10" rot="R90"/>
 </element>
 </elements>
 <signals>
@@ -531,6 +554,13 @@ design rules under a new name.</description>
 <wire x1="18.923" y1="6.477" x2="18.895" y2="6.54" width="0.254" layer="1"/>
 </signal>
 </signals>
+<mfgpreviewcolors>
+<mfgpreviewcolor name="soldermaskcolor" color="0xC8008000"/>
+<mfgpreviewcolor name="silkscreencolor" color="0xFFFEFEFE"/>
+<mfgpreviewcolor name="backgroundcolor" color="0xFF282828"/>
+<mfgpreviewcolor name="coppercolor" color="0xFFFFBF00"/>
+<mfgpreviewcolor name="substratecolor" color="0xFF786E46"/>
+</mfgpreviewcolors>
 </board>
 </drawing>
 </eagle>
