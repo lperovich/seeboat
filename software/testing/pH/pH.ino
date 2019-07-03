@@ -45,4 +45,6 @@ void loop() {
    pHVal+=(ph_data[3]-'0')*.1;
    pHVal+=(ph_data[4]-'0')*.01;
   }
+  Serial.println("hello");
+  Serial.print(pHVal);
 }
