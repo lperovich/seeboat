@@ -44,7 +44,7 @@ void loop() {
    pHVal+=ph_data[1]-'0'; //convert char array to float 
    pHVal+=(ph_data[3]-'0')*.1;
    pHVal+=(ph_data[4]-'0')*.01;
+   Serial.print("pH: ");
+   Serial.println(pHVal);
   }
-  Serial.println("hello");
-  Serial.print(pHVal);
 }
