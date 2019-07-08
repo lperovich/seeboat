@@ -55,11 +55,30 @@ Adafruit_GPS GPS(&GPSSerial);
 #define GPSECHO false
 //#define GPSECHO true
 
-// this keeps track of whether we're using the interrupt
-// off by default!
-boolean usingInterrupt = false;
-uint32_t timer = millis();
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// HERE'S WHERE YOU CHANGE ALL YOUR VARIABLES: WHAT SENSOR CONTROLS THE LIGHTS? WHAT'S THE RANGE FOR EACH SENSOR? WHICH SENSORS ARE PLUGGED IN?
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////// set these booleans to 1 if sensor is connected, 0 if not
+
+boolean condsensor = 1;
+boolean tempsensor = 1;
+boolean turbsensor = 0;
+boolean pHsensor = 1;
+
+//////////////////////////////////////////////////////////
+
+//you can input: "temperature", "conductivity", "turbidity", or "pH" to get the LEDs to correspond to certain data
+String whichDataControlsLEDs = "temperature";
+
+//////////////////////////////////////////////////////////
+
+//You want to choose values that are the bounds of what data you expect to see in a particular location so the color ranges well.
+//Look at the data from the radio to see what values you're getting.
 
 //SEEBOAT LED VARIABLES
 int hue = 0;
@@ -67,15 +86,22 @@ uint32_t starttime;
 //temperature color range (times 10; in oF)
 int lowReading1dec = 660;
 int highReading1dec = 870;
-//conductivity color range (in microS/cm)
-int lowReadingCond = 0;
-int highReadingCond = 10000;
-//temperature color range (unitless)
+//conductivity color range (in microS/cm), fresh water is ~700 microS/cm, brackish is ~50,000 microS/cm, ocean water is ~53,000 microS/cm
+int lowReadingCond = 30000;
+int highReadingCond = 50000;
+//pH color range (unitless)
 int lowReadingPH = 0;
 int highReadingPH = 14;
 //turbidity color range (milli irradiance)
-int lowReadingTurb = 12000; // get these values from Rima
+int lowReadingTurb = 12000;
 int highReadingTurb = 60000;
+
+///////////////////////////////////////////////////////////
+
+// this keeps track of whether we're using the interrupt
+// off by default!
+boolean usingInterrupt = false;
+uint32_t timer = millis();
 
 //SEEBOART SENSOR VARIABLES
 const int waterPin = 2;     // the number of the pushbutton pin
@@ -294,14 +320,17 @@ void loop() {
 
 //get the sensor info
   measureWater();
-  measurepH();
-  measureConductivity();
-  measureTemp();
-  measureTurbidity(); //getFrequency takes forever to run unless a sensor is actually plugged in, comment this out if no turbidity sensor is plugged in
+  if (pHsensor == 1) { 
+    measurepH();}
+  if (condsensor == 1) {
+    measureConductivity();}
+  if (tempsensor == 1) {
+    measureTemp(); }
+  if (turbsensor == 1) {
+    measureTurbidity(); } //getFrequency takes forever to run unless a sensor is actually plugged in, comment this out if no turbidity sensor is plugged in
   
 //turn the data into a red-green color
-//you can input: "temperature", "conductivity", "turbidity", or "pH" to get the LEDs to correspond to certain data
-  dataToColor("temperature");
+  dataToColor(whichDataControlsLEDs);
   
   //Get the GPS data ready
   GPSread();
