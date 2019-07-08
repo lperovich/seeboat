@@ -35,7 +35,7 @@ void loop() {
   float conductivity = voltToCondRes12(voltage); //for resistor = 1.2 kohm
   //float conductivity = voltToCondRes12(voltage); //for resistor = 1.0 kohm
 
-  Serial.println(conductivity);
+  Serial.println(voltage);
 
 }
   // map() function except for floats

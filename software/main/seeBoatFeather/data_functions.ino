@@ -179,14 +179,20 @@ void measureConductivity(){
 
   // converts voltage to conductivity for resistor = 1.2 kohm
   float voltToCondRes12(float voltage) {
-    return (voltage - 0.0321)/(0.00009); //for smaller probe
-    //return (voltage)*(17698) - 63.105; //for wider probe
+    return (voltage - 0.0321)/(0.00009); //for taller probe
+    //return 12878*(voltage) - 819.5; //for probe A
+    //return 16470*(voltage) - 1294; //for probe B
+    //return 14181*(voltage) – 739.08; //for probe C
+    //return 16053*(voltage) – 1171.2; //for probe D
 }
 
   // converts voltage to conductivity for resistor = 1 kohm
   float voltToCondRes1(float voltage) {
-    return (voltage - 0.011)/0.0001; //for smaller probe
-    //return (voltage)*(21077) + 143.87; //for wider probe
+    return (voltage - 0.011)/0.0001; //for taller probe
+    //return 15332*(voltage) - 768.52; //for probe A
+    //return 19701*(voltage) - 1189; //for probe B
+    //return 17057*(voltage) – 687.07; //for probe C
+    //return 19650*(voltage) – 1194.3; //for probe D
 }
 
 
