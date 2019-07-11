@@ -11,7 +11,7 @@
 #include <Adafruit_DotStar.h>
 #include <SPI.h>         
 
-#define NUMPIXELS 44 // Number of LEDs in strip
+#define NUMPIXELS 30 // Number of LEDs in strip
 
 // Here's how to control the LEDs from any two pins:
 #define DATAPIN    13
