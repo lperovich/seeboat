@@ -1,53 +1,58 @@
-//Rod code Fall 2017
-//code to verify the LED on the breakout board (the pins changed from one version to another
-//we never got the blue LED to work on this breakout board (v3.0)!
+//Modified by Laura Perovich 7/3/19 to have the correct pins for the SeeBoat breakout board control board pins
+//Make sure to plug in a battery (don't just connect by USB to the computer) to make sure the LEDs are sufficiently powered
 
-int oldRed = 11;
-int oldGreen = 10;
-int oldBlue = 9;
+// Simple strand test for Adafruit Dot Star RGB LED strip.
+// This is a basic diagnostic tool, NOT a graphics demo...helps confirm
+// correct wiring and tests each pixel's ability to display red, green
+// and blue and to forward data down the line.  By limiting the number
+// and color of LEDs, it's reasonably safe to power a couple meters off
+// the Arduino's 5V pin.  DON'T try that with other code!
 
-int strip1 = 11;
-int strip2 = 13;
+#include <Adafruit_DotStar.h>
+#include <SPI.h>         
 
-int Red = 12;
-int Green = 6;
-int Blue = 9;
+#define NUMPIXELS 44 // Number of LEDs in strip
 
-bool old = 0;
+// Here's how to control the LEDs from any two pins:
+#define DATAPIN    13
+#define CLOCKPIN   11
+Adafruit_DotStar strip(NUMPIXELS, DATAPIN, CLOCKPIN, DOTSTAR_BRG);
+// The last parameter is optional -- this is the color data order of the
+// DotStar strip, which has changed over time in different production runs.
+// Your code just uses R,G,B colors, the library then reassigns as needed.
+// Default is DOTSTAR_BRG, so change this if you have an earlier strip.
+
+// Hardware SPI is a little faster, but must be wired to specific pins
+// (Arduino Uno = pin 11 for data, 13 for clock, other boards are different).
+//Adafruit_DotStar strip(NUMPIXELS, DOTSTAR_BRG);
+
 void setup() {
-  // put your setup code here, to run once:
-  pinMode(Red,OUTPUT);
-  pinMode(Green,OUTPUT);
-  pinMode(Blue,OUTPUT);
-  pinMode(oldRed,OUTPUT);
-  pinMode(oldGreen,OUTPUT);
-  pinMode(strip1,OUTPUT);
-  pinMode(strip2,OUTPUT);
+
+#if defined(__AVR_ATtiny85__) && (F_CPU == 16000000L)
+  clock_prescale_set(clock_div_1); // Enable 16 MHz on Trinket
+#endif
+
+  strip.begin(); // Initialize pins for output
+  strip.show();  // Turn all LEDs off ASAP
 }
 
+// Runs 10 LEDs at a time along strip, cycling through red, green and blue.
+// This requires about 200 mA for all the 'on' pixels + 1 mA per 'off' pixel.
+
+int      head  = 0, tail = -10; // Index of first 'on' and 'off' pixels
+uint32_t color = 0xFF0000;      // 'On' color (starts red)
+
 void loop() {
-  // put your main code here, to run repeatedly:
-  if(old){
-    digitalWrite(oldGreen,LOW);
-    digitalWrite(oldRed,HIGH);
-    delay(1000);
-    digitalWrite(oldRed,LOW);
-    digitalWrite(oldBlue,HIGH);
-    delay(1000);
-    digitalWrite(oldBlue,LOW);
-    digitalWrite(oldGreen,HIGH);
-    delay(1000);
+
+  strip.setPixelColor(head, color); // 'On' pixel at head
+  strip.setPixelColor(tail, 0);     // 'Off' pixel at tail
+  strip.show();                     // Refresh strip
+  delay(20);                        // Pause 20 milliseconds (~50 FPS)
+
+  if(++head >= NUMPIXELS) {         // Increment head index.  Off end of strip?
+    head = 0;                       //  Yes, reset head index to start
+    if((color >>= 8) == 0)          //  Next color (R->G->B) ... past blue now?
+      color = 0xFF0000;             //   Yes, reset to red
   }
-  else{
-
-    digitalWrite(Red,HIGH);
-
-
-    digitalWrite(Blue,HIGH);
-
-
-    digitalWrite(Green,HIGH);
-    digitalWrite(strip1,HIGH);
-    digitalWrite(strip2,HIGH);
-  }
+  if(++tail >= NUMPIXELS) tail = 0; // Increment, reset tail index
 }
