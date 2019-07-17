@@ -2,18 +2,15 @@
 //Make sure to plug in a battery (don't just connect by USB to the computer) to make sure the LEDs are sufficiently powered
 
 // Simple strand test for Adafruit Dot Star RGB LED strip.
-// This is a basic diagnostic tool, NOT a graphics demo...helps confirm
-// correct wiring and tests each pixel's ability to display red, green
-// and blue and to forward data down the line.  By limiting the number
-// and color of LEDs, it's reasonably safe to power a couple meters off
-// the Arduino's 5V pin.  DON'T try that with other code!
 
 #include <Adafruit_DotStar.h>
 #include <SPI.h>         
 
-#define NUMPIXELS 44 // Number of LEDs in strip
+// Put the number of LEDs that are in the strand (or that you want to use in the strand) here:
+#define NUMPIXELS 44 
 
-// Here's how to control the LEDs from any two pins:
+//
+// Put the pin numbers of the LED strand here. For the SeeBoat feather breakout, the pins should be 13 and 11:
 #define DATAPIN    13
 #define CLOCKPIN   11
 Adafruit_DotStar strip(NUMPIXELS, DATAPIN, CLOCKPIN, DOTSTAR_BRG);
@@ -39,8 +36,10 @@ void setup() {
 // Runs 10 LEDs at a time along strip, cycling through red, green and blue.
 // This requires about 200 mA for all the 'on' pixels + 1 mA per 'off' pixel.
 
-int      head  = 0, tail = -10; // Index of first 'on' and 'off' pixels
-uint32_t color = 0xFF0000;      // 'On' color (starts red)
+int      head  = 0, tail = -10; // Index of first 'on' and 'off' pixels that will cascade around the LED strand
+uint32_t color = 0xFF0000;      // 'On' color (starts red). This is a hex color. You can see more here: https://html-color-codes.info/
+
+//FF0000 is red; 00FF00 is green; 0000FF is blue
 
 void loop() {
 
@@ -49,9 +48,9 @@ void loop() {
   strip.show();                     // Refresh strip
   delay(20);                        // Pause 20 milliseconds (~50 FPS)
 
-  if(++head >= NUMPIXELS) {         // Increment head index.  Off end of strip?
+  if(++head >= NUMPIXELS) {         // Increment head index.  Off end of strip? ++ means add one to that variable
     head = 0;                       //  Yes, reset head index to start
-    if((color >>= 8) == 0)          //  Next color (R->G->B) ... past blue now?
+    if((color >>= 8) == 0)          //  Next color (R->G->B) ... past blue now? >> is a rightward shift operator (moving the FFs to the right by 8 positions)  
       color = 0xFF0000;             //   Yes, reset to red
   }
   if(++tail >= NUMPIXELS) tail = 0; // Increment, reset tail index
