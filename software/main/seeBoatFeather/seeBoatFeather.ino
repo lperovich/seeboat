@@ -63,19 +63,27 @@ Adafruit_GPS GPS(&GPSSerial);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// type the name of the boat here so the code updates to the correct calibrations of the sensors
+String boatName = "boatNameTBD"; 
+
 ////////////////////////////////////////////////////////// set these booleans to 1 if sensor is connected, 0 if not
 
 boolean condsensor = 1;
 boolean tempsensor = 1;
-boolean turbsensor = 0;
+boolean turbsensor = 1;
 boolean pHsensor = 1;
 
-//////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//you can input: "temperature", "conductivity", "turbidity", or "pH" to get the LEDs to correspond to certain data
+// you can input: "temperature", "conductivity", "turbidity", or "pH" to get the LEDs to correspond to certain data
 String whichDataControlsLEDs = "temperature";
 
-//////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// you can input: "1.0", or "1.2" to show that the conductivity switch is using to 1.0 or the 1.2 kohm resistor
+String whichResistor = "1.2";
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //You want to choose values that are the bounds of what data you expect to see in a particular location so the color ranges well.
 //Look at the data from the radio to see what values you're getting.
@@ -92,9 +100,9 @@ int highReadingCond = 50000;
 //pH color range (unitless)
 int lowReadingPH = 0;
 int highReadingPH = 14;
-//turbidity color range (milli irradiance)
-int lowReadingTurb = 12000;
-int highReadingTurb = 60000;
+//turbidity color range (NTU)
+int lowReadingTurb = 0;
+int highReadingTurb = 1000; 
 
 ///////////////////////////////////////////////////////////
 
@@ -184,7 +192,7 @@ typedef struct {
   float tempVal; //temperature value
   float condVal;
   float pHVal;
-  float milliIrradiance;
+  float turbVal;
 } Payload;
 Payload theData;
 
@@ -379,7 +387,7 @@ void loop() {
     Serial.println("Cond: " + (String)condVal);
     Serial.println("Temp: " + (String)tempVal);
     Serial.println("Hue: " + (String)hue);
-    Serial.println("Turb: " + (String)milliIrradiance);
+    Serial.println("Turb: " + (String)turbVal);
     
     
     //Also do the radio send at this time

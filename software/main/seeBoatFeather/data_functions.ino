@@ -108,6 +108,16 @@ void measureTurbidity(){
 
   delay(1000);
   */
+
+  float slope = 0;
+  float intercept = 0;
+  if (boatName == "boatNameTBD") {
+    slope = 0.0660060801;
+    intercept = -827.591705;
+  }
+  
+  turbVal = (kilohertz - intercept)/slope;
+
 }
 
 long getFrequency(int pin) {
@@ -168,8 +178,13 @@ void measureConductivity(){
   //NOTE: the conductivity code in the SeeBoat Feather code also adjust for the temperature (this impacts conductivity)
 
   //convert voltage to conductivity (microS)
-  condVal = voltToCondRes12(voltage); //for resistor = 1.2 kohm
-  //condVal = voltToCondRes12(voltage); //for resistor = 1.0 kohm
+  if (whichResistor == "1.2") {
+    condVal = voltToCondRes12(voltage); } //for resistor = 1.2 kohm
+  else if (whichResistor == "1.0") {
+    condVal = voltToCondRes12(voltage); } //for resistor = 1.0 kohm
+  else {
+    Serial.println("Input: " + (String)whichResistor + " is not a valid resistor.");
+    return; }
 }
 
   // map() function except for floats
@@ -179,9 +194,10 @@ void measureConductivity(){
 
   // converts voltage to conductivity for resistor = 1.2 kohm
   float voltToCondRes12(float voltage) {
-    return (voltage - 0.0321)/(0.00009); //for taller probe
+    if (boatName == "boatNameTBD") {
+      return 16470*(voltage) - 1294; }
+    //return (voltage - 0.0321)/(0.00009); //for taller probe
     //return 12878*(voltage) - 819.5; //for probe A
-    //return 16470*(voltage) - 1294; //for probe B
     //return 14181*(voltage) – 739.08; //for probe C
     //return 16053*(voltage) – 1171.2; //for probe D
 }
@@ -219,7 +235,7 @@ void dataAssemble(){
   theData.tempVal = tempVal;
   theData.condVal = condVal;
   theData.pHVal = pHVal;
-  theData.milliIrradiance = milliIrradiance;
+  theData.turbVal = turbVal;
   //Put the data together
 //  tempDataArray[0] = deviceID;
 //  tempDataArray[1] =  GPStime;
