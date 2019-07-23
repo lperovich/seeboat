@@ -27,14 +27,17 @@ uint32_t white = 0xFFFFFF;        // white using hex
 // in the second way, you tell the LEDs how much of each color you want to use
 // each of the three numbers in this line can be any number between 0 and 255
 // one number represents how much red, one represents how much green, and one represents how much blue 
-uint32_t blue = strip.Color(0, 0, 255);   // blue using rgb
 uint32_t red = strip.Color(0, 255, 0);    // red using rgb
-uint32_t green = strip.Color(255, 0, 0);    // green using rgb
-uint32_t purple = strip.Color(0, 255, 255);   // purple using rgb
+uint32_t orange = strip.Color(50, 255, 0);    // orange using rgb
+uint32_t green2 = strip.Color(255, 0, 0);    // green using rgb
+uint32_t purple3 = strip.Color(0, 255, 255);   // purple using rgb
 uint32_t purple = strip.Color(0, 255, 255);   // purple using rgb
 //Create a new color using this template:
 //uint32_t purple = strip.Color(0, 255, 255);   // purple using rgb
 
+uint32_t yellow2 = strip.Color(255, 255, 0); 
+uint32_t purple2 = strip.Color(9, 89, 168); 
+uint32_t darkBlue = strip.Color(23, 0, 172); 
 
 /////////////////////////////////////// SET EVERYTHING UP
 void setup() {
@@ -48,11 +51,28 @@ void setup() {
 /////////////////////////////////////// RUN THE CODE
 void loop() {
   //Put the color that you want for the LEDs here, based on the color names that you created above. The LED strand will turn this color
-  strip.fill(purple);
+  strip.fill(red);
   strip.show();
+  delay(1000);
+  strip.fill(orange);
+  strip.show();
+  delay(1000);
+  strip.fill(yellow2);
+  strip.show();
+  delay(1000);
+   strip.fill(green2);
+  strip.show();
+  delay(1000);
+  strip.fill(darkBlue);
+  strip.show();
+  delay(1000);
+  strip.fill(purple2);
+  strip.show();
+  delay(1000);
 
+  
  //you can create two consecutive colors using delays
- //delay(500);
+ //delay(1000);
  //strip.fill(purple);
  //strip.show();
  

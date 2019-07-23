@@ -27,7 +27,7 @@ int startBlue = 0;
 //the color we want to go to:
 int endRed = 255;
 int endGreen = 255;
-int endBlue = 0;
+int endBlue = 255;
 //We want five different versions; work along the sides of the RGB space
 //green to yellow; 0, 0 ,255 to 0, 255, 255
 //: 0, 255, 0; 255, 255, 0
@@ -93,7 +93,7 @@ void stripFadeIn(){
     nowGreen = startGreen + floor(i*greenDiff/fadeLength);
     
       for (int k = 0; k<numLEDs; k++){         
-        strip.setPixelColor(k, strip.Color(nowBlue, nowGreen, nowRed));
+        strip.setPixelColor(k, strip.Color(nowGreen, nowRed, nowBlue));
        }
       strip.show();
       delay(7);
@@ -120,7 +120,7 @@ void stripFadeOut(){
     nowGreen = endGreen + floor(i*greenDiff/fadeLength);
     
       for (int k = 0; k<numLEDs; k++){         
-        strip.setPixelColor(k, strip.Color(nowBlue, nowGreen, nowRed));
+        strip.setPixelColor(k, strip.Color(nowGreen, nowRed, nowBlue));
        }
       strip.show();
       delay(7);
