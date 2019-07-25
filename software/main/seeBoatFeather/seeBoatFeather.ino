@@ -290,6 +290,8 @@ void setup(){
   //GPS start up
   GPSsetup();
 
+  delay(45000);
+
   //LED start up
   ledStartup();
   
