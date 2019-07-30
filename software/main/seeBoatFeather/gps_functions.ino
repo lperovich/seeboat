@@ -33,7 +33,7 @@ void GPSsetup(){
   
   // Ask for firmware version
   GPSSerial.println(PMTK_Q_RELEASE);
-
+  //delay to try to get a fix
 }
 
 //////////////////////////////////////////////////////////////////////////////
