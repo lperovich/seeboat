@@ -107,7 +107,7 @@ void radioSetup(){
   Serial.begin(9600);
   delay(100);
 
-  Serial.println("Feather LoRa RX Test!");
+  //Serial.println("Feather LoRa RX Test!");
   
   // manual reset
   digitalWrite(RFM95_RST, LOW);
@@ -119,14 +119,14 @@ void radioSetup(){
     Serial.println("LoRa radio init failed");
     while (1);
   }
-  Serial.println("LoRa radio init OK!");
+//  Serial.println("LoRa radio init OK!");
 
   // Defaults after init are 434.0MHz, modulation GFSK_Rb250Fd250, +13dbM
   if (!rf95.setFrequency(RF95_FREQ)) {
     Serial.println("setFrequency failed");
     while (1);
   }
-  Serial.print("Set Freq to: "); Serial.println(RF95_FREQ);
+//  Serial.print("Set Freq to: "); Serial.println(RF95_FREQ);
 
   // Defaults after init are 434.0MHz, 13dBm, Bw = 125 kHz, Cr = 4/5, Sf = 128chips/symbol, CRC on
 
@@ -136,7 +136,8 @@ void radioSetup(){
   rf95.setTxPower(23, false);
 
 //Print the column headers
-Serial.println("deviceID, GPSlat, GPSlong, GPShour, GPSmin, GPSsec, GPSms, tempVal");
+//Serial.println("deviceID, GPSlat, GPSlong, GPShour, GPSmin, GPSsec, GPSms, tempC, conduS, pH, turbNTU, date, time");
+
 
 }
 
@@ -153,37 +154,38 @@ void radioReceive(){
       //from moteino code
       theData = *(Payload*)buf;
       //theData = *(Payload*)radio.DATA; //assume radio.DATA actually contains our struct and not something else
-      Serial.print(" deviceID=");
+    //Labels turned off here so it writes more easily to a csv--can re-include if formatting is easier
+//      Serial.print(" deviceID=");
       Serial.print(theData.deviceID);
       Serial.print(",");
-      Serial.print(" GPSlat=");
+//      Serial.print(" GPSlat=");
       Serial.print(theData.GPSlat,7);
       Serial.print(",");
-      Serial.print(" GPSlong=");
+//      Serial.print(" GPSlong=");
       Serial.print(-theData.GPSlong,7);
       Serial.print(",");
-      Serial.print(" GPShour=");
+//      Serial.print(" GPShour=");
       Serial.print(theData.GPShour);  
       Serial.print(",");
-      Serial.print(" GPSmin=");
+//      Serial.print(" GPSmin=");
       Serial.print(theData.GPSmin);  
       Serial.print(",");
-      Serial.print(" GPSsec=");
+//      Serial.print(" GPSsec=");
       Serial.print(theData.GPSsec);  
       Serial.print(",");
-      Serial.print(" GPSms=");
+//      Serial.print(" GPSms=");
       Serial.print(theData.GPSms);  
       Serial.print(",");
-      Serial.print(" tempVal=");
+//      Serial.print(" tempVal=");
       Serial.print(theData.tempVal);
       Serial.print(",");
-      Serial.print(" condVal=");
+//      Serial.print(" condVal=");
       Serial.print(theData.condVal);
       Serial.print(",");
-      Serial.print(" pHVal=");
+//      Serial.print(" pHVal=");
       Serial.print(theData.pHVal);
       Serial.print(",");
-      Serial.print(" NTU=");
+//      Serial.print(" NTU=");
       Serial.print(theData.NTU);
       Serial.println();
     }

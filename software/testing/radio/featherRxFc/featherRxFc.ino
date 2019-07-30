@@ -132,20 +132,25 @@ void RxRun(){
     if (rf95.recv(buf, &len))
     {
       digitalWrite(LED, HIGH);
-      RH_RF95::printBuffer("Received: ", buf, len);
-      Serial.print("Got: ");
+     // RH_RF95::printBuffer("Received: ", buf, len);
+
+     // Serial.print("Got: ");
 //      Serial.println((int*)buf);
       for (int i=0; i<len; i++){
 //      Serial.println((char*)buf[i]);
 
 //      float k = (float)buf[i];
 //      Serial.println(k);    
-      Serial.println(buf[i]); //this seems to give us normal number values
+      Serial.print(buf[i]); //this seems to give us normal number values
+      Serial.print(", ");
       }
+      Serial.println("8");
 //      Serial.println((char*)buf);
-       Serial.print("RSSI: ");
-      Serial.println(rf95.lastRssi(), DEC);
-      Serial.println("NEXT MESSAGE");
+
+    //If you want to know things about the connection
+     //  Serial.print("RSSI: ");
+    //  Serial.println(rf95.lastRssi(), DEC);
+    //  Serial.println("NEXT MESSAGE");
       delay(10);
      
       // Send a reply
@@ -165,5 +170,3 @@ void RxRun(){
 
 //  Serial.println("not available");
 }
-
-
