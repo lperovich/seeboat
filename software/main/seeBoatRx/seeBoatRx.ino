@@ -77,7 +77,7 @@ typedef struct {
   float tempVal; //temperature value
   float condVal;
   float pHVal;
-  float milliIrradiance;
+  float NTU;
 } Payload;
 Payload theData;
 
@@ -183,8 +183,8 @@ void radioReceive(){
       Serial.print(" pHVal=");
       Serial.print(theData.pHVal);
       Serial.print(",");
-      Serial.print(" milliIrradiance=");
-      Serial.print(theData.milliIrradiance);
+      Serial.print(" NTU=");
+      Serial.print(theData.NTU);
       Serial.println();
     }
     else
