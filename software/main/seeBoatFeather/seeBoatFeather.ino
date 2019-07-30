@@ -68,10 +68,10 @@ String boatName = "boatNameTBD";
 
 ////////////////////////////////////////////////////////// set these booleans to 1 if sensor is connected, 0 if not
 
-boolean condsensor = 1;
-boolean tempsensor = 1;
-boolean turbsensor = 1;
-boolean pHsensor = 1;
+boolean condsensor = 0;
+boolean tempsensor = 0;
+boolean turbsensor = 0;
+boolean pHsensor = 0;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -286,11 +286,11 @@ Adafruit_DotStar strip(NUMPIXELS, DATAPIN, CLOCKPIN, DOTSTAR_BRG);
 // the setup routine runs once when you press reset:
 void setup(){
   pinMode(readingMain,INPUT); //pin for turbidity
-  
+
   //GPS start up
   GPSsetup();
 
-  delay(45000);
+  delay(60000);
 
   //LED start up
   ledStartup();
