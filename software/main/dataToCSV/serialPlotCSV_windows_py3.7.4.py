@@ -17,7 +17,7 @@ import numpy as np
 from datetime import datetime
 
 filename = "seeBoatData"
-serial_port = 'COM12'
+serial_port = 'COM3' #Make sure to check this every time because it changes!!
 baud_rate = 9600
 path = "%s_%s.csv" % (filename, str(datetime.now()).translate ({ord(c): "_" for c in "!@#$%^&*()[]{};:,./<>?\|`~-=_+"}))
 
