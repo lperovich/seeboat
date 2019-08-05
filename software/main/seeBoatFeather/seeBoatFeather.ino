@@ -64,13 +64,14 @@ Adafruit_GPS GPS(&GPSSerial);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // type the name of the boat here so the code updates to the correct calibrations of the sensors
-String boatName = "boatNameTBD"; 
+// options right now are "turtle" or "dolphin"
+String boatName = "dolphin"; 
 
 ////////////////////////////////////////////////////////// set these booleans to 1 if sensor is connected, 0 if not
 
 boolean condsensor = 1;
 boolean tempsensor = 1;
-boolean turbsensor = 0;
+boolean turbsensor = 1;
 boolean pHsensor = 1;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -290,7 +291,7 @@ void setup(){
   //GPS start up
   GPSsetup();
 
-  delay(60000);
+  //delay(60000);
 
   //LED start up
   ledStartup();

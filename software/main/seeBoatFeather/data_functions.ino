@@ -111,10 +111,15 @@ void measureTurbidity(){
 
   float slope = 0;
   float intercept = 0;
-  if (boatName == "boatNameTBD") {
+  if (boatName == "turtle") {
     slope = 0.0660060801;
-    intercept = -827.591705;
-  }
+    intercept = -827.591705; }
+  else if (boatName == "dolphin") {
+    slope = 0.07719528492;
+    intercept = -432.8704854; }
+  else {
+      Serial.println("Name: '" + boatName + "' is not a valid boat name.");
+      return; }
   
   turbVal = (kilohertz - intercept)/slope;
 
@@ -183,7 +188,7 @@ void measureConductivity(){
   else if (whichResistor == "1.0") {
     condVal = voltToCondRes12(voltage); } //for resistor = 1.0 kohm
   else {
-    Serial.println("Input: " + (String)whichResistor + " is not a valid resistor.");
+    Serial.println("Input: '" + (String)whichResistor + "' is not a valid resistor.");
     return; }
 }
 
@@ -194,20 +199,29 @@ void measureConductivity(){
 
   // converts voltage to conductivity for resistor = 1.2 kohm
   float voltToCondRes12(float voltage) {
-    if (boatName == "boatNameTBD") {
+    if (boatName == "turtle") {
       return 16470*(voltage) - 1294; }
+    else if (boatName == "dolphin") {
+      return 14181*(voltage) - 739.08; }
+    else {
+      Serial.println("Name: '" + boatName + "' is not a valid boat name.");
+      return 0; }
     //return (voltage - 0.0321)/(0.00009); //for taller probe
     //return 12878*(voltage) - 819.5; //for probe A
-    //return 14181*(voltage) – 739.08; //for probe C
     //return 16053*(voltage) – 1171.2; //for probe D
 }
 
   // converts voltage to conductivity for resistor = 1 kohm
   float voltToCondRes1(float voltage) {
-    return (voltage - 0.011)/0.0001; //for taller probe
+    if (boatName == "turtle") {
+      return 19701*(voltage) - 1189; }
+    else if (boatName == "boatNameTBD") {
+      return 17057*(voltage) - 687.07; }
+    else {
+      Serial.println("Name: '" + boatName + "' is not a valid boat name.");
+      return 0; }
+    //return (voltage - 0.011)/0.0001; //for taller probe
     //return 15332*(voltage) - 768.52; //for probe A
-    //return 19701*(voltage) - 1189; //for probe B
-    //return 17057*(voltage) – 687.07; //for probe C
     //return 19650*(voltage) – 1194.3; //for probe D
 }
 
