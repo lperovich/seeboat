@@ -182,6 +182,7 @@ Payload theData;
 
 //version with the seeboat data
 typedef struct {
+  int boatName;
   int           deviceID; //store this nodeId
   float GPSlat; //latitude
   float GPSlong;   //longitude

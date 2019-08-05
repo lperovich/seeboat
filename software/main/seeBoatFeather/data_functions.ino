@@ -237,7 +237,17 @@ void dataAssemble(){
   theData.GPSlong = 99.7281; 
   theData.tempVal = 77.7;
 */
-
+  int boatNameNumber = 0;
+  if (boatName == "turtle") {
+    boatNameNumber = 1;
+  }
+  else if (boatName == "dolphin") {
+    boatNameNumber = 2;
+  }
+  else {
+    Serial.println("Boat name: '" + boatName + "' is not a valid boat name.");
+  }
+  theData.boatName = boatNameNumber;
   theData.deviceID = deviceID; 
   theData.GPSlat = GPSlat; 
   theData.GPSlong = GPSlong; 

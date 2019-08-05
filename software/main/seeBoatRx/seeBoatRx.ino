@@ -66,6 +66,7 @@ RH_RF95 rf95(RFM95_CS, RFM95_INT);
 
 //version with the seeboat data
 typedef struct {
+  int boatName;
   int deviceID; //store this nodeId
   float GPSlat; //latitude
   float GPSlong;   //longitude
@@ -155,6 +156,19 @@ void radioReceive(){
       theData = *(Payload*)buf;
       //theData = *(Payload*)radio.DATA; //assume radio.DATA actually contains our struct and not something else
     //Labels turned off here so it writes more easily to a csv--can re-include if formatting is easier
+      String boatNameString = "";
+      if (theData.boatName == 1) {
+        boatNameString = "turtle";
+      }
+      else if (theData.boatName == 2) {
+        boatNameString = "dolphin";
+      }
+      else {
+        Serial.println("Boat name number: '" + (String)theData.boatName + "' is not a valid boat name.");
+      }
+      
+      Serial.print(boatNameString);
+      Serial.print(",");
 //      Serial.print(" deviceID=");
       Serial.print(theData.deviceID);
       Serial.print(",");
