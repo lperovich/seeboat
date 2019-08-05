@@ -59,7 +59,7 @@ def plotfix( plotname ):
 
 #Put in the header for the csv
 with open(path, 'a') as f:
-    header = ["deviceID,", "GPSlat,", "GPSlong,", "GPShour,", "GPSmin,", "GPSsec,", "GPSms,", "tempC,", "conduS,", "pH,","turbNTU,","date,", "time\n"]
+    header = ["boatName,", "deviceID,", "GPSlat,", "GPSlong,", "GPShour,", "GPSmin,", "GPSsec,", "GPSms,", "tempC,", "conduS,", "pH,","turbNTU,","date,", "time\n"]
     f.writelines(header)
 
 
