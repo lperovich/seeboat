@@ -27,7 +27,7 @@ path = "%s_%s.csv" % (filename, str(datetime.now()))
 ser = serial.Serial(serial_port, baud_rate)
 ser.flushInput()
 
-plot_window = 20 #This is the number of points that you're plotting at once
+plot_window = 50 #This is the number of points that you're plotting at once
 #There are four different sensors we're plotting data for
 y_varC = np.array(np.zeros([plot_window])) #conductivity
 y_varN = np.array(np.zeros([plot_window])) #turbitidy
@@ -80,10 +80,10 @@ while True:
             f.writelines([decoded_bytes, ", %s , %s \n " % (datetime.now().date(), datetime.now().time())]) #write this to the file
 
         #Make a plot, including subplots for all sensors. Indices are how the come from arduino
-        y_varC = np.append(y_varC,float(decoded_bytesList[8]))
-        y_varN = np.append(y_varN,float(decoded_bytesList[10]))
-        y_varT = np.append(y_varT,float(decoded_bytesList[7]))
-        y_varP = np.append(y_varP,float(decoded_bytesList[9]))
+        y_varC = np.append(y_varC,float(decoded_bytesList[9]))
+        y_varN = np.append(y_varN,float(decoded_bytesList[11]))
+        y_varT = np.append(y_varT,float(decoded_bytesList[8]))
+        y_varP = np.append(y_varP,float(decoded_bytesList[10]))
 
         y_varC = y_varC[1:plot_window+1]
         y_varN = y_varN[1:plot_window+1]

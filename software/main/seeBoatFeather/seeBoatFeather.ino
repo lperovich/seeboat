@@ -69,10 +69,10 @@ String boatName = "dolphin";
 
 ////////////////////////////////////////////////////////// set these booleans to 1 if sensor is connected, 0 if not
 
-boolean condsensor = 1;
-boolean tempsensor = 1;
-boolean turbsensor = 1;
-boolean pHsensor = 1;
+boolean condsensor = 0;
+boolean tempsensor = 0;
+boolean turbsensor = 0;
+boolean pHsensor = 0;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
