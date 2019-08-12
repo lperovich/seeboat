@@ -10,11 +10,12 @@
 //watch out for the timing in the pH probe--wrong timing means we'll see zero values
 //GPS worked okay as long as all the I2C stuff was plugged in okay, didn't see any weird dropping off behavior
 
-//Edits from Talia Spring 2019
+//Edits from Talia Spring/Summer 2019
 //Updated conductivity code.
 //LED strip works with all data types.
 //Integrated all components.
 //Verified that transmitter/reciever functions work.
+//Added multi-boat functionality.
 
 //Parts:
 //feather radio: sents data to central feather attached to computer
@@ -289,13 +290,13 @@ Adafruit_DotStar strip(NUMPIXELS, DATAPIN, CLOCKPIN, DOTSTAR_BRG);
 void setup(){
   pinMode(readingMain,INPUT); //pin for turbidity
 
-  //GPS start up
-  GPSsetup();
-
-  //delay(60000);
-
   //LED start up
   ledStartup();
+
+  //delay(60000);
+  
+  //GPS start up
+  GPSsetup();
   
   //radio start-up
   radioStartup();
