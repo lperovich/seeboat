@@ -24,7 +24,7 @@ path = "%s_%s.csv" % (filename, str(datetime.now()).translate ({ord(c): "_" for 
 ser = serial.Serial(serial_port, baud_rate)
 ser.flushInput()
 
-plot_window = 20 #This is the number of points that you're plotting at once
+plot_window = 50 #This is the number of points that you're plotting at once
 #There are four different sensors we're plotting data for
 y_varC = np.array(np.zeros([plot_window])) #conductivity
 y_varN = np.array(np.zeros([plot_window])) #turbitidy
