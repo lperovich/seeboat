@@ -30,7 +30,7 @@ void dataToColor(String dataInput)
       low = lowReadingCond;
       high = highReadingCond; }
   else if (dataInput == "turbidity") {
-      dataValue = milliIrradiance; 
+      dataValue = turbVal; 
       low = lowReadingTurb;
       high = highReadingTurb; }
   else if (dataInput == "pH") {
