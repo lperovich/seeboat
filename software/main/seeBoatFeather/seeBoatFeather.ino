@@ -100,8 +100,8 @@ int highReading1dec = 870;
 int lowReadingCond = 30000;
 int highReadingCond = 50000;
 //pH color range (unitless)
-int lowReadingPH = 0;
-int highReadingPH = 14;
+int lowReadingPH = 800; //times 100 to save decimals
+int highReadingPH = 900; //times 100 to save decimals
 //turbidity color range (NTU)
 int lowReadingTurb = 0;
 int highReadingTurb = 1000; 
