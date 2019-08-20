@@ -78,7 +78,7 @@ boolean pHsensor = 1;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // you can input: "temperature", "conductivity", "turbidity", or "pH" to get the LEDs to correspond to certain data
-String whichDataControlsLEDs = "pH";
+String whichDataControlsLEDs = "temperature";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -97,11 +97,11 @@ uint32_t starttime;
 int lowReading1dec = 660;
 int highReading1dec = 870;
 //conductivity color range (in microS/cm), fresh water is ~700 microS/cm, brackish is ~50,000 microS/cm, ocean water is ~53,000 microS/cm
-int lowReadingCond = 0;
-int highReadingCond = 2000;
+int lowReadingCond = 30000;
+int highReadingCond = 50000;
 //pH color range (unitless)
-int lowReadingPH = 700; //(times 100)
-int highReadingPH = 800; //(times 100)
+int lowReadingPH = 0;
+int highReadingPH = 14;
 //turbidity color range (NTU)
 int lowReadingTurb = 0;
 int highReadingTurb = 1000; 
