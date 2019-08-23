@@ -34,7 +34,7 @@ void dataToColor(String dataInput)
       low = lowReadingTurb;
       high = highReadingTurb; }
   else if (dataInput == "pH") {
-      dataValue = pHVal; 
+      dataValue = pHVal * 100; //times 100 to save decimals 
       low = lowReadingPH;
       high = highReadingPH; }
   else {

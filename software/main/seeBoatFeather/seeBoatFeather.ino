@@ -10,11 +10,12 @@
 //watch out for the timing in the pH probe--wrong timing means we'll see zero values
 //GPS worked okay as long as all the I2C stuff was plugged in okay, didn't see any weird dropping off behavior
 
-//Edits from Talia Spring 2019
+//Edits from Talia Spring/Summer 2019
 //Updated conductivity code.
 //LED strip works with all data types.
 //Integrated all components.
 //Verified that transmitter/reciever functions work.
+//Added multi-boat functionality.
 
 //Parts:
 //feather radio: sents data to central feather attached to computer
@@ -65,7 +66,7 @@ Adafruit_GPS GPS(&GPSSerial);
 
 // type the name of the boat here so the code updates to the correct calibrations of the sensors
 // options right now are "turtle" or "dolphin"
-String boatName = "turtle"; 
+String boatName = "dolphin"; 
 
 ////////////////////////////////////////////////////////// set these booleans to 1 if sensor is connected, 0 if not
 
@@ -77,7 +78,7 @@ boolean pHsensor = 1;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // you can input: "temperature", "conductivity", "turbidity", or "pH" to get the LEDs to correspond to certain data
-String whichDataControlsLEDs = "turbidity";
+String whichDataControlsLEDs = "temperature";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -93,17 +94,17 @@ String whichResistor = "1.2";
 int hue = 0;
 uint32_t starttime; 
 //temperature color range (times 10; in oF)
-int lowReading1dec = 770; //seeing 26.25 to 26.75
-int highReading1dec = 790;
+int lowReading1dec = 660;
+int highReading1dec = 870;
 //conductivity color range (in microS/cm), fresh water is ~700 microS/cm, brackish is ~50,000 microS/cm, ocean water is ~53,000 microS/cm
-int lowReadingCond = -200; //seeing -200 to 200 or so
-int highReadingCond = 300;
+int lowReadingCond = 30000;
+int highReadingCond = 50000;
 //pH color range (unitless)
-int lowReadingPH = 6.0; //seeing roughly 6 to 7
-int highReadingPH = 7.0;
+int lowReadingPH = 800; //times 100 to save decimals
+int highReadingPH = 900; //times 100 to save decimals
 //turbidity color range (NTU)
-int lowReadingTurb = 50;
-int highReadingTurb = 200; 
+int lowReadingTurb = 0;
+int highReadingTurb = 1000; 
 
 ///////////////////////////////////////////////////////////
 
@@ -289,13 +290,13 @@ Adafruit_DotStar strip(NUMPIXELS, DATAPIN, CLOCKPIN, DOTSTAR_BRG);
 void setup(){
   pinMode(readingMain,INPUT); //pin for turbidity
 
-  //GPS start up
-  GPSsetup();
-
-  //delay(60000);
-
   //LED start up
   ledStartup();
+
+  //delay(60000);
+  
+  //GPS start up
+  GPSsetup();
   
   //radio start-up
   radioStartup();

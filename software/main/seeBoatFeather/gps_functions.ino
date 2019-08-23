@@ -5,7 +5,7 @@ If GPS doesn't seem to obtain a fix, make sure that all of the sensors are conne
 */
 
 //////////////////////////////////////////////////////////////////////////////
-void GPSsetup(){
+void GPSsetup() {
   //while (!Serial);  // uncomment to have the sketch wait until Serial is ready
   
   // connect at 115200 so we can read the GPS fast enough and echo without dropping chars

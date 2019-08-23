@@ -35,7 +35,7 @@ void loop() {
   float conductivity = voltToCondRes12(voltage); //for resistor = 1.2 kohm
   //float conductivity = voltToCondRes12(voltage); //for resistor = 1.0 kohm
 
-  Serial.println(voltage);
+  Serial.println(conductivity);
 
 }
   // map() function except for floats
@@ -45,12 +45,14 @@ void loop() {
 
   // converts voltage to conductivity for resistor = 1.2 kohm
   float voltToCondRes12(float voltage) {
-    return (voltage - 0.0321)/(0.00009); //for smaller probe
+    return (voltage)*12878 - 819.5; //for A
+    //return (voltage - 0.0321)/(0.00009); //for smaller probe
     //return (voltage)*(17698) - 63.105; //for wider probe
 }
 
   // converts voltage to conductivity for resistor = 1 kohm
   float voltToCondRes1(float voltage) {
-    return (voltage - 0.011)/0.0001; //for smaller probe
+    return (voltage)*15332 - 768.52; //for A
+    //return (voltage - 0.011)/0.0001; //for smaller probe
     //return (voltage)*(21077) + 143.87; //for wider probe
 }
