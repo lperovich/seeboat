@@ -200,15 +200,9 @@ void measureConductivity(){
   // converts voltage to conductivity for resistor = 1.2 kohm
   float voltToCondRes12(float voltage) {
     if (boatName == "turtle") {
-      if ((16470*(voltage) - 1294) < 0) {
-        return 0; }
-      else {
-        return 16470*(voltage) - 1294; } }
+        return 16470*(voltage) - 1294; }
     else if (boatName == "dolphin") {
-      if ((14181*(voltage) - 739.08) < 0) {
-        return 0; }
-      else {
-        return 14181*(voltage) - 739.08; } }
+        return 14181*(voltage) - 739.08; }
     else {
       Serial.println("Name: '" + boatName + "' is not a valid boat name.");
       return 0; }
