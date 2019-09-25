@@ -66,7 +66,8 @@ Adafruit_GPS GPS(&GPSSerial);
 
 // type the name of the boat here so the code updates to the correct calibrations of the sensors
 // options right now are "turtle" or "dolphin"
-String boatName = "dolphin"; 
+String boatName = "turtle"; 
+//String boatName = "dolphin"; 
 
 ////////////////////////////////////////////////////////// set these booleans to 1 if sensor is connected, 0 if not
 
@@ -78,7 +79,8 @@ boolean pHsensor = 1;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // you can input: "temperature", "conductivity", "turbidity", or "pH" to get the LEDs to correspond to certain data
-String whichDataControlsLEDs = "temperature";
+//String whichDataControlsLEDs = "temperature";
+String whichDataControlsLEDs = "pH";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -94,17 +96,17 @@ String whichResistor = "1.2";
 int hue = 0;
 uint32_t starttime; 
 //temperature color range (times 10; in oF)
-int lowReading1dec = 660;
-int highReading1dec = 870;
+int lowReading1dec = 680;
+int highReading1dec = 770;
 //conductivity color range (in microS/cm), fresh water is ~700 microS/cm, brackish is ~50,000 microS/cm, ocean water is ~53,000 microS/cm
-int lowReadingCond = 30000;
-int highReadingCond = 50000;
+int lowReadingCond = 1500;
+int highReadingCond = 2700;
 //pH color range (unitless)
-int lowReadingPH = 800; //times 100 to save decimals
-int highReadingPH = 900; //times 100 to save decimals
+int lowReadingPH = 730; //times 100 to save decimals
+int highReadingPH = 820; //times 100 to save decimals
 //turbidity color range (NTU)
-int lowReadingTurb = 0;
-int highReadingTurb = 1000; 
+int lowReadingTurb = 50;
+int highReadingTurb = 200; 
 
 ///////////////////////////////////////////////////////////
 
