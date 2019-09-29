@@ -35,7 +35,7 @@ const int chipSelect = 4;
 String filename = "";
 
 //Attempt to make a new file for each run...not working, I think because of char filename that needs to be string?
-//char filename[50];
+char filenameCh[50];
 int randomNumber;
 
 //how often we get GPS data in milliseconds
@@ -74,6 +74,9 @@ void loop() {
   GPSread();
   GPSgetLocTime();
   SDwrite();
+//  Serial.println(filename);
+//  Serial.println(GPS.day, DEC);
+//  Serial.println(GPSday, DEC);
 
 }
 
@@ -186,7 +189,109 @@ void GPSgetLocTime(){
       Serial.println(GPSlong, 5);
     }
 }
-/////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+void SDsetup(){
+  //make sure this is (probably) a new file, by adding a number to it
+    randomSeed(analogRead(0));
+    randomNumber = random(999);
+    sprintf(filenameCh, "datalog%u.csv", randomNumber);
+    filename = (String)filenameCh;
+//    filename = "datalog.csv";
+    Serial.println(filename);
+
+
+  // Open serial communications--don't wait for port to open!!
+  Serial.begin(9600);
+ // while (!Serial) {
+    ; // wait for serial port to connect. Needed for native USB port only
+ // }
+
+  Serial.print("Initializing SD card...");
+
+  // see if the card is present and can be initialized:
+  if (!SD.begin(chipSelect)) {
+    Serial.println("Card failed, or not present");
+    // don't do anything more:
+    while (1);
+  }
+  Serial.println("card initialized.");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+
+  void SDprep(){
+
+  //write the header line
+    String dataString = "GPS.lat, GPS.long, date, time";
+    File dataFile = SD.open(filename, FILE_WRITE);
+
+    // if the file is available, write to it:
+    if (dataFile) {
+    dataFile.println(dataString);
+
+    dataFile.close();
+    }
+      else {
+    Serial.println("first error opening file");
+  }
+
+  }
+
+/////////////////////////////////////////////////////////////////////////////
+
+  void SDwrite(){
+  // make a string for assembling the data to log:
+  String dataString = "";
+
+  // read three sensors and append to the string:
+/*  for (int analogPin = 0; analogPin < 3; analogPin++) {
+    int sensor = analogRead(analogPin);
+    dataString += String(sensor);
+    if (analogPin < 2) {
+      dataString += ",";
+    }
+  }
+*/
+  // open the file. note that only one file can be open at a time,
+  // so you have to close this one before opening another.
+  File dataFile = SD.open(filename, FILE_WRITE);
+
+  // if the file is available, write to it:
+  if (dataFile) {
+    dataFile.print(GPSlat, 6);
+    dataFile.print(", ");
+
+    dataFile.print(GPSlong, 6);
+    dataFile.print(", ");
+
+    dataFile.print(GPSmonth, DEC);
+    dataFile.print("/");
+    dataFile.print(GPSday, DEC);
+    dataFile.print("/");
+    dataFile.print(GPSyear, DEC);
+    dataFile.print(", ");
+
+    dataFile.print(GPShour);
+    dataFile.print(":");
+    dataFile.print(GPSmin);
+    dataFile.print(":");
+    dataFile.println(GPSsec);
+//    dataFile.print(", ");
+
+
+    //dataFile.println(dataString);
+    dataFile.close();
+    // print to the serial port too:
+    //Serial.println(dataString);
+  }
+  // if the file isn't open, pop up an error:
+  else {
+    Serial.println("error opening file");
+  }
+  }
+
+  //////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////
 
 void GPSprintLoc(){
     if (millis() - timer > 2000) {
@@ -290,103 +395,3 @@ String GPSgettime(){
     Serial.println(GPS.milliseconds);
     return nowTime;
 }
-
-//////////////////////////////////////////////////////////////////////////////
-void SDsetup(){
-  //make sure this is (probably) a new file, by adding a number to it
-    randomSeed(analogRead(0));
-    randomNumber = random(999);
-//    sprintf(filename, "datalog%u.csv", randomNumber);
-    filename = "datalog.csv";
-    Serial.println(filename);
-
-
-  // Open serial communications--don't wait for port to open!!
-  Serial.begin(9600);
- // while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
- // }
-
-  Serial.print("Initializing SD card...");
-
-  // see if the card is present and can be initialized:
-  if (!SD.begin(chipSelect)) {
-    Serial.println("Card failed, or not present");
-    // don't do anything more:
-    while (1);
-  }
-  Serial.println("card initialized.");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-
-  void SDprep(){
-
-  //write the header line
-    String dataString = "GPS.lat, GPS.long, date, time";
-    File dataFile = SD.open(filename, FILE_WRITE);
-
-    // if the file is available, write to it:
-    if (dataFile) {
-    dataFile.println(dataString);
-
-    dataFile.close();
-    }
-      else {
-    Serial.println("first error opening file");
-  }
-
-  }
-
-/////////////////////////////////////////////////////////////////////////////
-
-  void SDwrite(){
-  // make a string for assembling the data to log:
-  String dataString = "";
-
-  // read three sensors and append to the string:
-/*  for (int analogPin = 0; analogPin < 3; analogPin++) {
-    int sensor = analogRead(analogPin);
-    dataString += String(sensor);
-    if (analogPin < 2) {
-      dataString += ",";
-    }
-  }
-*/
-  // open the file. note that only one file can be open at a time,
-  // so you have to close this one before opening another.
-  File dataFile = SD.open(filename, FILE_WRITE);
-
-  // if the file is available, write to it:
-  if (dataFile) {
-    dataFile.print(GPSlat);
-    dataFile.print(", ");
-
-    dataFile.print(GPSlong);
-    dataFile.print(", ");
-
-    dataFile.print(GPSmonth);
-    dataFile.print("/");
-    dataFile.print(GPSday);
-    dataFile.print("/");
-    dataFile.print(GPSyear);
-    dataFile.print(", ");
-
-    dataFile.print(GPShour);
-    dataFile.print(":");
-    dataFile.print(GPSmin);
-    dataFile.print(":");
-    dataFile.println(GPSsec);
-//    dataFile.print(", ");
-
-
-    //dataFile.println(dataString);
-    dataFile.close();
-    // print to the serial port too:
-    //Serial.println(dataString);
-  }
-  // if the file isn't open, pop up an error:
-  else {
-    Serial.println("error opening file");
-  }
-  }
