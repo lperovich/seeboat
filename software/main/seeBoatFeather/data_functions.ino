@@ -117,6 +117,9 @@ void measureTurbidity(){
   else if (boatName == "dolphin") {
     slope = 0.07719528492;
     intercept = -432.8704854; }
+  else if (boatName == "shark") {
+    slope = 0.09599310259;
+    intercept = -1052.27442; }
   else {
       Serial.println("Name: '" + boatName + "' is not a valid boat name.");
       return; }
@@ -203,6 +206,8 @@ void measureConductivity(){
         return 16470*(voltage) - 1294; }
     else if (boatName == "dolphin") {
         return 14181*(voltage) - 739.08; }
+    else if (boatName == "shark") {
+        return 16053*(voltage) - 1171.2; }
     else {
       Serial.println("Name: '" + boatName + "' is not a valid boat name.");
       return 0; }
@@ -217,6 +222,8 @@ void measureConductivity(){
       return 19701*(voltage) - 1189; }
     else if (boatName == "boatNameTBD") {
       return 17057*(voltage) - 687.07; }
+    else if (boatName == "shark") {
+        return 19650*(voltage) - 1194.3; }
     else {
       Serial.println("Name: '" + boatName + "' is not a valid boat name.");
       return 0; }

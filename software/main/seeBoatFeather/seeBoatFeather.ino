@@ -65,9 +65,9 @@ Adafruit_GPS GPS(&GPSSerial);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // type the name of the boat here so the code updates to the correct calibrations of the sensors
-// options right now are "turtle" or "dolphin"
+// options right now are "turtle", "dolphin", or "shark"
 String boatName = "turtle"; 
-//String boatName = "dolphin"; 
+//String boatName = "shark"; 
 
 ////////////////////////////////////////////////////////// set these booleans to 1 if sensor is connected, 0 if not
 
