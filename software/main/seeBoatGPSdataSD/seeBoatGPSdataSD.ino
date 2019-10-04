@@ -34,7 +34,7 @@ Adafruit_GPS GPS(&GPSSerial);
 const int chipSelect = 4;
 String filename = "";
 
-//Attempt to make a new file for each run...not working, I think because of char filename that needs to be string?
+//Attempt to make a new file for each run
 char filenameCh[50];
 int randomNumber;
 

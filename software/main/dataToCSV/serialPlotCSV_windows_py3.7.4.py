@@ -74,10 +74,10 @@ while True:
 
        #Make a plot, add something above to select which data you want
         #Make a plot, including subplots for all sensors. Indices are how the come from arduino
-        y_varC = np.append(y_varC,float(decoded_bytesList[8]))
-        y_varN = np.append(y_varN,float(decoded_bytesList[10]))
-        y_varT = np.append(y_varT,float(decoded_bytesList[7]))
-        y_varP = np.append(y_varP,float(decoded_bytesList[9]))
+        y_varC = np.append(y_varC,float(decoded_bytesList[9]))
+        y_varN = np.append(y_varN,float(decoded_bytesList[11]))
+        y_varT = np.append(y_varT,float(decoded_bytesList[8]))
+        y_varP = np.append(y_varP,float(decoded_bytesList[10]))
 
         y_varC = y_varC[1:plot_window+1]
         y_varN = y_varN[1:plot_window+1]
