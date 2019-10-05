@@ -16,6 +16,14 @@
 
 #include <SPI.h>
 #include <SD.h>
+#include "Wire.h"
+ 
+//const int  AT30TS750_I2C =  0x48;    // I2C Address for the temperature sensor
+const int  AT30TS750_I2C =  0x4B;    // I2C Address for the temperature sensor
+
+const byte REG_TEMP      =  0x00;    // Register Address: Temperature Value
+const byte REG_CONFIG    =  0x01;    // Register Address: Configuration
+float temperature;
 
 //SDcard variable
 const int chipSelect = 4;
@@ -40,9 +48,14 @@ float conductivity;
 
 void setup() {
 
+  delay(10000);
   //SD setup
   SDsetup();
   SDprep();
+
+  Wire.begin();
+ 
+  init_AT30TS750A();
 
   Serial.begin(9600);
   pinMode(power, OUTPUT);
@@ -52,8 +65,9 @@ void setup() {
 ///////////////////////////////////////////////////////////////////////////////////////   LOOP
 
 void loop() {
-
-  tone(power,10000);
+  int i = 0;
+  while(i<720) {
+    tone(power,10000);
   val = analogRead(sensor);
 
   //analog read goes from 0-1023; our range of voltage goes from 0 to 3.3, so scale things accordingly to get a voltage value
@@ -67,15 +81,54 @@ void loop() {
   conductivity = voltToCondRes12(voltage); //for resistor = 1.2 kohm
   //float conductivity = voltToCondRes12(voltage); //for resistor = 1.0 kohm
 
-  Serial.println(conductivity);
+  byte   tempLSByte       = 0;
+  byte   tempMSByte       = 0; 
+  float  floatTemperature = 0.0000;
+ 
+  Wire.beginTransmission  (AT30TS750_I2C);
+  Wire.write              (REG_TEMP);
+  byte error = Wire.endTransmission    ();
+//  Serial.print(error);
+  
+  Wire.requestFrom        (AT30TS750_I2C, 2);
+  tempMSByte              = Wire.read();
+  tempLSByte              = Wire.read() >> 4;
+
+  floatTemperature        = tempMSByte + (tempLSByte * .0625);
+  temperature = floatTemperature;
+
+  Serial.print(conductivity);
+  Serial.print(", ");
+  Serial.println(temperature);
 
   SDwrite();
-
+  i = i+1;
+  delay(10000);
+  }
+  delay(100000000);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////      FUNCTIONS      ////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
+
+void init_AT30TS750A() {
+ 
+  /* Change the resolution of the temperature measurement
+       0x00 =  9 bit resolution
+       0x20 = 10 bit resolution
+       0x40 = 11 bit resolution
+       0x60 = 12 bit resolution
+  */
+  
+  Wire.beginTransmission (AT30TS750_I2C);  
+  Wire.write             (REG_CONFIG);
+//  Wire.write             (0x00);            // Set Measurement Resolution Here
+  Wire.write             (0x20);            // Set Measurement Resolution Here
+  Wire.endTransmission   ();
+}
+
+////////////////////////////////////////////////////////////////////////////////////
      
   // map() function except for floats
   float mapFloat(float x, float in_min, float in_max, float out_min, float out_max) {
@@ -101,7 +154,8 @@ void SDsetup(){
   //make sure this is (probably) a new file, by adding a number to it
     randomSeed(analogRead(0));
     randomNumber = random(999);
-//    sprintf(filename, "datalog%u.csv", randomNumber);
+    //sprintf(filenameCh, "datalog%u.csv", randomNumber);
+    //filename = (String)filenameCh;
     filename = "datalog.csv";
     Serial.println(filename);
 
@@ -128,7 +182,7 @@ void SDsetup(){
   void SDprep(){
 
   //write the header line
-    String dataString = "conductivity";
+    String dataString = "conductivity (microS/cm), temperature (F)";
     File dataFile = SD.open(filename, FILE_WRITE);
 
     // if the file is available, write to it:
@@ -164,7 +218,10 @@ void SDsetup(){
 
   // if the file is available, write to it:
   if (dataFile) {
-    dataFile.println(conductivity);
+    dataFile.print(conductivity);
+    dataFile.print(", ");
+
+    dataFile.println(temperature);
 
 //    dataFile.print(", ");
 
