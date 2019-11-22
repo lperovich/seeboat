@@ -21,6 +21,7 @@ void setup() {
 
 ///////////////////////////////////// GET VALUES
 void loop() { 
+  //put in the frequency here! definitely works with 10,000
   tone(power,10000);
   val = analogRead(sensor);
 
@@ -35,7 +36,7 @@ void loop() {
   float conductivity = voltToCondRes12(voltage); //for resistor = 1.2 kohm
   //float conductivity = voltToCondRes12(voltage); //for resistor = 1.0 kohm
 
-  Serial.println(conductivity);
+  Serial.println(voltage);
 
 }
   // map() function except for floats
