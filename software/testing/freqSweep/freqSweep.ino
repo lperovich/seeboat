@@ -1,8 +1,3 @@
-//Code by Laura/Talia September 2019
-//Alternative route to SeeBoat with conductivity--uses a SD data logging to keep track of position so the data can be remerged later
-//Combines the SD card datalogger example code (Tom Igoe) with the conductivity logging code from the SeeBoat code
-//Try to write the data to the card in a way that will be 'easy' to combine with the measurement data using R or some statistical software
-
 /*
   SD card datalogger
  * analog sensors on analog ins 0, 1, and 2
@@ -43,15 +38,17 @@ int sensor = A1;             //final voltage (purple wire)
 float val = 0.0;
 float conductivity;
 
+int frequency = 100;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////   SETUP
 
 void setup() {
 
-  delay(10000);
+  //delay(10000);
   //SD setup
-  SDsetup();
-  SDprep();
+  //SDsetup();
+  //SDprep();
 
   Wire.begin();
  
@@ -66,8 +63,8 @@ void setup() {
 
 void loop() {
   int i = 0;
-  while(i<720) {
-    tone(power,10000);
+  while(i<100) {
+    tone(power,frequency);
   val = analogRead(sensor);
 
   //analog read goes from 0-1023; our range of voltage goes from 0 to 3.3, so scale things accordingly to get a voltage value
@@ -78,7 +75,7 @@ void loop() {
   //NOTE: the conductivity code in the SeeBoat Feather code also adjust for the temperature (this impacts conductivity)
 
   //convert voltage to conductivity (microS)
-  conductivity = voltToCondRes12(voltage); //for resistor = 1.2 kohm
+  conductivity = voltage; // put function for probe
   //float conductivity = voltToCondRes12(voltage); //for resistor = 1.0 kohm
 
   byte   tempLSByte       = 0;
@@ -97,13 +94,13 @@ void loop() {
   floatTemperature        = tempMSByte + (tempLSByte * .0625);
   temperature = floatTemperature;
 
-  Serial.print(conductivity);
+  Serial.print(frequency);
   Serial.print(", ");
-  Serial.println(temperature);
+  Serial.println(conductivity);
 
-  SDwrite();
+  //SDwrite();
   i = i+1;
-  delay(10000);
+  frequency = frequency + 100;
   }
   delay(100000000);
 }
