@@ -35,7 +35,7 @@ uint32_t timer = millis();
 
 int power = 5;              //50% square wave (yellow wire) connected to pin 5 on the feather
 int sensor = A1;             //final voltage (purple wire)
-float val = 0.0;
+float valAvg = 0.0;
 float conductivity;
 
 int frequency = 100;
@@ -63,14 +63,15 @@ void setup() {
 
 void loop() {
   int i = 0;
+  delay(1000);
   while(i<100) {
     tone(power,frequency);
-  val = analogRead(sensor);
-
+  valAvg = avg(sensor);
   //analog read goes from 0-1023; our range of voltage goes from 0 to 3.3, so scale things accordingly to get a voltage value
   //But we're working from half ground, so the lowest we'll actually every read off of analogue read is half of 1023
   //map this into the full voltage range (e.g. 1023/2 should be zero volts; 1023 should go to 3.3 volts)
-  float voltage = mapFloat(val, 1023/2, 1023, 0, 3.3);
+  float voltage = mapFloat(getVal(sensor), 1023/2, 1023, 0, 3.3);
+  valAvg = mapFloat(valAvg, 1023/2, 1023, 0, 3.3);
 
   //NOTE: the conductivity code in the SeeBoat Feather code also adjust for the temperature (this impacts conductivity)
 
@@ -96,11 +97,14 @@ void loop() {
 
   Serial.print(frequency);
   Serial.print(", ");
-  Serial.println(conductivity);
+  //Serial.print(conductivity,4);
+  //Serial.print(", AVG: ");
+  Serial.println(valAvg,4);
 
   //SDwrite();
   i = i+1;
-  frequency = frequency + 100;
+  frequency = frequency+100;
+  delay(500);
   }
   delay(100000000);
 }
@@ -108,6 +112,19 @@ void loop() {
 /////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////      FUNCTIONS      ////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
+
+long avg(int pin) {
+  #define SAMPLES 10
+//  #define SAMPLES 100
+  float val = 0;
+  for(unsigned int j=0; j<SAMPLES; j++) 
+    val = val + analogRead(sensor);
+  return val / SAMPLES;
+}
+
+long getVal(int pin) {
+  return analogRead(sensor);
+}
 
 void init_AT30TS750A() {
  

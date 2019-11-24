@@ -163,6 +163,10 @@ void radioReceive(){
       else if (theData.boatName == 2) {
         boatNameString = "dolphin";
       }
+      else if (theData.boatName == 0) {
+        boatNameString = "shark";
+      }
+
       else {
         Serial.println("Boat name number: '" + (String)theData.boatName + "' is not a valid boat name.");
       }

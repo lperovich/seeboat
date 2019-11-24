@@ -68,8 +68,8 @@ void loop() {
   int i = 0;
   while(i<720) {
     tone(power,10000);
-  val = analogRead(sensor);
-
+  val = avg(sensor);
+  
   //analog read goes from 0-1023; our range of voltage goes from 0 to 3.3, so scale things accordingly to get a voltage value
   //But we're working from half ground, so the lowest we'll actually every read off of analogue read is half of 1023
   //map this into the full voltage range (e.g. 1023/2 should be zero volts; 1023 should go to 3.3 volts)
@@ -97,7 +97,7 @@ void loop() {
   floatTemperature        = tempMSByte + (tempLSByte * .0625);
   temperature = floatTemperature;
 
-  Serial.print(conductivity);
+  Serial.print(voltage,4);
   Serial.print(", ");
   Serial.println(temperature);
 
@@ -129,7 +129,18 @@ void init_AT30TS750A() {
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
-     
+
+
+  //averages data
+  long avg(int pin) {
+  #define SAMPLES 10
+//  #define SAMPLES 100
+  float val = 0;
+  for(unsigned int j=0; j<SAMPLES; j++) 
+    val = val + analogRead(sensor);
+  return val / SAMPLES;
+}
+
   // map() function except for floats
   float mapFloat(float x, float in_min, float in_max, float out_min, float out_max) {
     return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
