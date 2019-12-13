@@ -17,6 +17,7 @@ void setup() {
   Serial.begin(9600);
   pinMode(power, OUTPUT);
   pinMode(sensor, INPUT);
+  analogReadResolution(12);
 }
 
 ///////////////////////////////////// GET VALUES
