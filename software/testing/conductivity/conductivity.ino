@@ -29,7 +29,10 @@ void loop() {
   //analog read goes from 0-1023; our range of voltage goes from 0 to 3.3, so scale things accordingly to get a voltage value
   //But we're working from half ground, so the lowest we'll actually every read off of analogue read is half of 1023
   //map this into the full voltage range (e.g. 1023/2 should be zero volts; 1023 should go to 3.3 volts)
-  float voltage = mapFloat(val, 1023/2, 1023, 0, 3.3);
+  //10 bit
+//  float voltage = mapFloat(val, 1023/2, 1023, 0, 3.3);
+  //12 bit
+  float voltage = mapFloat(val, 4095/2, 4095, 0, 3.3);
 
   //NOTE: the conductivity code in the SeeBoat Feather code also adjust for the temperature (this impacts conductivity)
 
