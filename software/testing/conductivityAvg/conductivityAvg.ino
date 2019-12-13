@@ -17,23 +17,18 @@ void setup() {
   Serial.begin(9600);
   pinMode(power, OUTPUT);
   pinMode(sensor, INPUT);
-  //default is to 10, get more with the feather
-  analogReadResolution(12);
 }
 
 ///////////////////////////////////// GET VALUES
 void loop() { 
   //put in the frequency here! definitely works with 10,000
   tone(power,10000);
-  val = analogRead(sensor);
+  val = avg(sensor);
 
   //analog read goes from 0-1023; our range of voltage goes from 0 to 3.3, so scale things accordingly to get a voltage value
   //But we're working from half ground, so the lowest we'll actually every read off of analogue read is half of 1023
   //map this into the full voltage range (e.g. 1023/2 should be zero volts; 1023 should go to 3.3 volts)
-  //for resoltuion of 10
-//  float voltage = mapFloat(val, 1023/2, 1023, 0, 3.3);
-//for resoltuion of 12
-  float voltage = mapFloat(val, 4095/2, 4095, 0, 3.3);
+  float voltage = mapFloat(val, 1023/2, 1023, 0, 3.3);
 
   //NOTE: the conductivity code in the SeeBoat Feather code also adjust for the temperature (this impacts conductivity)
 
@@ -42,8 +37,20 @@ void loop() {
   //float conductivity = voltToCondRes12(voltage); //for resistor = 1.0 kohm
 
   Serial.println(voltage,4);
+  delay(250);
 
 }
+
+  //averages data
+  long avg(int pin) {
+  #define SAMPLES 10
+//  #define SAMPLES 100
+  float val = 0;
+  for(unsigned int j=0; j<SAMPLES; j++) 
+    val = val + analogRead(sensor);
+  return val / SAMPLES;
+}
+
   // map() function except for floats
   float mapFloat(float x, float in_min, float in_max, float out_min, float out_max) {
     return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
