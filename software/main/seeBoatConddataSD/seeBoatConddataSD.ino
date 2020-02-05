@@ -2,6 +2,7 @@
 //Alternative route to SeeBoat with conductivity--uses a SD data logging to keep track of position so the data can be remerged later
 //Combines the SD card datalogger example code (Tom Igoe) with the conductivity logging code from the SeeBoat code
 //Try to write the data to the card in a way that will be 'easy' to combine with the measurement data using R or some statistical software
+//Added 12 bit instead of 10 December 16th, 2019
 
 /*
   SD card datalogger
@@ -61,6 +62,10 @@ void setup() {
   Serial.begin(9600);
   pinMode(power, OUTPUT);
   pinMode(sensor, INPUT);
+
+  //we can do 12 bit on the feather to get better data
+  analogReadResolution(12);
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////   LOOP
@@ -71,10 +76,12 @@ void loop() {
     tone(power,10000);
   val = avg(sensor);
   
+  //Adjusted 12.16/19 for 12-bit instead of 10, i.e. up to 4095
   //analog read goes from 0-1023; our range of voltage goes from 0 to 3.3, so scale things accordingly to get a voltage value
   //But we're working from half ground, so the lowest we'll actually every read off of analogue read is half of 1023
   //map this into the full voltage range (e.g. 1023/2 should be zero volts; 1023 should go to 3.3 volts)
-  voltage = mapFloat(val, 1023/2, 1023, 0, 3.3);
+//  voltage = mapFloat(val, 1023/2, 1023, 0, 3.3);
+  voltage = mapFloat(val, 4095/2, 4095, 0, 3.3);
 
   //NOTE: the conductivity code in the SeeBoat Feather code also adjust for the temperature (this impacts conductivity)
 
@@ -233,7 +240,7 @@ void SDsetup(){
     dataFile.print(voltage,4);
     dataFile.print(", ");
 
-    dataFile.println(temperature);
+    dataFile.println(temperature, 4);
 
 //    dataFile.print(", ");
 

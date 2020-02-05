@@ -47,14 +47,14 @@ void loop() {
 }
 
   //averages data
-  long avg(int pin) {
+long avg(int pin) {
   #define SAMPLES 10
 //  #define SAMPLES 100
   float val = 0;
   for(unsigned int j=0; j<SAMPLES; j++) 
     val = val + analogRead(sensor);
   return val / SAMPLES;
-}
+  }
 
   // map() function except for floats
   float mapFloat(float x, float in_min, float in_max, float out_min, float out_max) {
