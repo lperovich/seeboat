@@ -7,7 +7,6 @@
 //LP: changed to sine wave input off A0 instead of square wave input off D5 Feb 2020
 //Using code from this (attachment post by by BDL (Wed Jul 17, 2019 10:34 am): https://forums.adafruit.com/viewtopic.php?f=57&t=153490&start=15
 //LP: changed to go back to 10 bit and include sine waveinput to probe Feb 2020
-//LP: changed to integrate Don's version of the sine waveinput code to probe Feb 26, 2020
 
 /*
   SD card datalogger
@@ -51,17 +50,17 @@ float val = 0.0;
 float conductivity;
 double voltage;
 
-/////////////// Sine wave stuff
+//Sine wave stuff
 #define const_pwr       // ifndef get constant (single cycle per frequency) chirp.  
                         // ifdef  get constant power per fft bin
-
-//#define serial        // uncomment to get some serial data - leave undef for full performance
-
 volatile uint16_t sintable1[32];
-volatile uint32_t freq=10000;
-static uint16_t period = 48000000/(freq * 32) -1;
+volatile uint32_t freq;
 
-float frac = .1;  //sine wave amplitude will be multipled by this factor
+//what it sweeps to and from. Put this at 10K constantly for our case
+//uint32_t basefreq = 100;          // min freq
+uint32_t basefreq = 10000;          // min freq
+uint32_t maxfreq  = 10000;        // max freq
+//uint32_t maxfreq  = 25000;        // max freq
 
 typedef struct                                                                    // DMAC descriptor structure
 {
@@ -75,6 +74,7 @@ typedef struct                                                                  
 volatile dmacdescriptor wrb[12] __attribute__ ((aligned (16)));                   // Write-back DMAC descriptors
 volatile dmacdescriptor descriptor_section[12] __attribute__ ((aligned (16)));    // DMAC channel descriptors
 dmacdescriptor descriptor __attribute__ ((aligned (16)));                         // Place holder descriptor
+
 
 
 
@@ -99,21 +99,20 @@ void setup() {
   //we can do 12 bit on the feather to get better data
   //analogReadResolution(12);
 
-///////// Sine wave stuff
-// ================================================================================================================
- // #ifdef serial
-  Serial.begin(115200);                                           // Comment this line and next for full performance
-  //while(!Serial);
- // #endif
+//Sine wave stuff
+  // ================================================================================================================
+  #ifdef serial
+//  Serial.begin(2000000);                                           // Comment this line and next for full performance
+//  while(!Serial);
+  #endif
   // ================================================================================================================
   
   for (uint16_t i = 0; i < 32; i++)                                // Calculate the sine table with 32 entries
   {
-    sintable1[i] = (uint16_t)( frac *  (sinf(2 * PI * (float)i / 32) * 511) + 512);
+    sintable1[i] = (uint16_t)((sinf(2 * PI * (float)i / 32) * 511) + 512);
   }
 
   analogWriteResolution(10);                                        // Set the DAC's resolution to 10-bits
-  analogReadResolution(12);
   analogWrite(A0, 0);                                               // Initialise the DAC
 
   //===============
@@ -163,7 +162,7 @@ void setup() {
   TCC0->WAVE.reg = TCC_WAVE_WAVEGEN_NFRQ;          // Setup TCC0 in Normal Frequency (NFRQ) mode
   while (TCC0->SYNCBUSY.bit.WAVE);                 // Wait for synchronization
   
-//  freq = basefreq;                                 // set freq to minimum
+  freq = basefreq;                                 // set freq to minimum
                  
   #ifdef serial
   Serial.print("Start period is: ");  Serial.println(48000000/(freq *32) - 1);
@@ -178,6 +177,7 @@ void setup() {
  
   DMAC->CHID.reg = DMAC_CHID_ID(0);                // Select DMAC channel 
   DMAC->CHCTRLA.reg |= DMAC_CHCTRLA_ENABLE;        // Enable DMAC channel 
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////   LOOP
@@ -193,8 +193,8 @@ void loop() {
   //analog read goes from 0-1023; our range of voltage goes from 0 to 3.3, so scale things accordingly to get a voltage value
   //But we're working from half ground, so the lowest we'll actually every read off of analogue read is half of 1023
   //map this into the full voltage range (e.g. 1023/2 should be zero volts; 1023 should go to 3.3 volts)
-//  voltage = mapFloat(val, 1023/2, 1023, 0, 3.3);
-  voltage = mapFloat(val, 4095/2, 4095, 0, 3.3);
+  voltage = mapFloat(val, 1023/2, 1023, 0, 3.3);
+//  voltage = mapFloat(val, 4095/2, 4095, 0, 3.3);
 
   //NOTE: the conductivity code in the SeeBoat Feather code also adjust for the temperature (this impacts conductivity)
 
@@ -372,8 +372,10 @@ void SDsetup(){
 /////////////////////////////////////////////////////////////////////////////////
 void DMAC_Handler()
 {
-
-     
+  //static uint16_t period = 14999;                       // Initialise 100Hz sine wave, 32 samples: 48MHz / (100 * 32) - 1
+  static uint16_t period = 2999;                          // Corresponds to 500 Hz, gets overwritten
+  static uint16_t count  = 1;                             // BDL number of periods of each sine wave (constant power case)
+  static uint16_t idx = 0;                                // index counter
   
   DMAC->CHID.reg = DMAC_CHID_ID(DMAC->INTPEND.bit.ID);    // Find the DMAC channel generating the interrupt
   descriptor_section[0].btctrl &= ~DMAC_BTCTRL_VALID;     // Disable the descriptor   
@@ -384,7 +386,26 @@ void DMAC_Handler()
   Serial.print("idx  :"); Serial.println(idx);
   Serial.print("count:"); Serial.println(count);
   #endif
-
+  
+  #ifdef const_pwr
+  if (idx >= count)                                       // Have satisfied the constant power per frequency condition
+  {
+    idx = 0;                                              // reset the index   
+    freq += 100;                                          // we want to sweep frequency
+    freq  = freq > (maxfreq+1) ? basefreq : freq;                    // reset frequency if f > 250000 Hz
+    period = 48000000/(freq * 32) -1;                     // then calc out the best fit period
+    //Serial.print("freq  :"); Serial.println(freq);      // have to comment out serial to run at speed
+    //Serial.print("period:"); Serial.println(period);   
+    count = uint16_t (freq/basefreq);                          // reset the count.  count = desired_freq/base_freq
+  }
+  idx += 1;                                               // increment the index                           
+  #endif
+  
+  #ifndef const_pwr
+  freq += 100;                                            // we want to sweep frequency
+  freq  = freq > (maxfreq+1) ? basefreq : freq;                      // reset frequency if f > 250000 Hz
+  period = 48000000/(freq * 32) -1;                       // then calc out the best fit period
+  #endif
   
   descriptor_section[0].btctrl |= DMAC_BTCTRL_VALID;      // Enable the descriptor                       
   DMAC->CHCTRLB.reg |= DMAC_CHCTRLB_CMD_RESUME;           // Resume the DMAC channel
