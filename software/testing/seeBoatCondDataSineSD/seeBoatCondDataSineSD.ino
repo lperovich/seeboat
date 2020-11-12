@@ -40,7 +40,7 @@ String filename = "";
 int randomNumber;
 
 //how often we get GPS data in milliseconds
-int howOftenMS = 1000;
+int howOftenMS = 1000; 
 
 uint32_t timer = millis();
 
@@ -95,9 +95,12 @@ void setup() {
 //  pinMode(power, OUTPUT);
   pinMode(sensor, INPUT);
 
+  //DOUBLE CHECK THAT THIS IS RIGHT!!!!!!!!!!!!!!!!!!!
   //don't do 12 bit because maybe the sine wave needs 10
   //we can do 12 bit on the feather to get better data
-  //analogReadResolution(12);
+  analogWriteResolution(10);                                        // Set the DAC's resolution to 10-bits
+  analogReadResolution(12);
+
 
 ///////// Sine wave stuff
 // ================================================================================================================
@@ -205,7 +208,7 @@ void loop() {
   byte   tempLSByte       = 0;
   byte   tempMSByte       = 0; 
   float  floatTemperature = 0.0000;
- 
+ //commenting out for testing I2C interference of temp sensor began here (green80000inside5.1KBatterySineTempOff; data2h80000GIbSTF.png)
   Wire.beginTransmission  (AT30TS750_I2C);
   Wire.write              (REG_TEMP);
   byte error = Wire.endTransmission    ();
@@ -217,6 +220,8 @@ void loop() {
 
   floatTemperature        = tempMSByte + (tempLSByte * .0625);
   temperature = floatTemperature;
+ //commenting out for testing I2C interference of temp sensor ended here, used additional line below (green80000inside5.1KBatterySineTempOff; data2h80000GIbSTF.png)
+ // temperature = 0;
 
   Serial.print(voltage,4);
   Serial.print(", ");
@@ -224,9 +229,10 @@ void loop() {
 
   SDwrite();
   i = i+1;
-  delay(10000);
+  delay(100);
+//  delay(10000);
   }
-  delay(100000000);
+//  delay(100000000);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
